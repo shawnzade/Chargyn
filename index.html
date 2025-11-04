@@ -7,94 +7,97 @@
   <meta name="description" content="Public EV charging for properties. Powered by Tesla Superchargers.">
   <style>
     :root{
-      --bg:#ffffff; --fg:#0b0b0c; --muted:#58606a; --acc:#29E36A; --border:#E6E8EB;
-      --shadow:0 6px 16px rgba(0,0,0,.06);
+      --bg:#ffffff; --fg:#0b0b0c; --muted:#58606a; --border:#E6E8EB;
+      --shadow:0 6px 16px rgba(0,0,0,.06); --wrap:1180px;
+      --btn:#0b0b0c; --btnText:#ffffff; --radius:12px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--fg);font:16.5px/1.62 -apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+    html,body{height:100%}
+    body{background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
     img{display:block;max-width:100%;height:auto}
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+    .wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+
+    .btn{display:inline-block;padding:12px 18px;border:1px solid var(--btn);border-radius:10px;background:var(--btn);color:var(--btnText);font-weight:600}
+    .btn.outline{background:#fff;color:var(--fg);border-color:var(--fg)}
+    .btn.block{width:100%;text-align:center}
 
     /* Header */
-    header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
-    .bar{height:66px;display:flex;align-items:center}
+    header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--border)}
+    .bar{height:64px;display:flex;align-items:center;gap:12px}
     .brand{display:flex;align-items:center;gap:10px}
     .brand svg{flex:0 0 auto}
-    nav#nav{margin-left:auto;display:flex;gap:16px;align-items:center}
-    .cta{display:inline-block;padding:10px 16px;border:1px solid var(--fg);border-radius:8px;line-height:1}
-    .cta.primary{background:var(--fg);color:#fff;border-color:var(--fg)}
-    .hamb{display:none;border:1px solid var(--border);border-radius:8px;padding:8px 10px;margin-left:12px}
+    nav#nav{margin-left:auto;display:flex;gap:10px}
+    .hamb{display:none;margin-left:12px;border:1px solid var(--border);border-radius:10px;padding:8px 12px;background:#fff}
 
-    /* Hero split */
+    /* Hero */
     .hero{border-bottom:1px solid var(--border);background:#fff}
-    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding:56px 0}
-    .hero h1{font-size:44px;line-height:1.12;margin-bottom:12px;letter-spacing:-.01em}
-    .hero p{color:var(--muted);font-size:18px;margin-bottom:18px}
-    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding:40px 0}
+    .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.15;letter-spacing:-.01em;margin-bottom:10px}
+    .hero p{color:var(--muted);font-size:clamp(15px,2.2vw,18px);margin-bottom:16px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
     .frame{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
-    .frame img{width:100%;height:100%;object-fit:cover}
+    .frame img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10}
 
-    /* Feature tiles */
-    .tiles{padding:56px 0;border-bottom:1px solid var(--border)}
-    .tiles h2{font-size:32px;margin-bottom:8px}
-    .sub{color:var(--muted);margin-bottom:22px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .tile{border:1px solid var(--border);border-radius:12px;padding:18px;background:#fff;box-shadow:var(--shadow);min-height:120px}
+    /* Sections */
+    .tiles{padding:42px 0;border-bottom:1px solid var(--border)}
+    .tiles h2{font-size:clamp(22px,3vw,32px);margin-bottom:6px}
+    .sub{color:var(--muted);margin-bottom:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .tile{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff;box-shadow:var(--shadow);min-height:120px}
     .tile h3{font-size:18px;margin-bottom:6px}
     .tile p{color:var(--muted)}
-
-    /* Partner section */
-    .partner{padding:56px 0;border-bottom:1px solid var(--border)}
-    .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-    .partner h2{font-size:32px;margin-bottom:8px}
-    .list{margin:10px 0 14px 18px}
+    .partner{padding:42px 0;border-bottom:1px solid var(--border)}
+    .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+    .partner h2{font-size:clamp(22px,3vw,32px);margin-bottom:6px}
+    .list{margin:8px 0 12px 18px}
     .list li{margin:6px 0}
-
-    /* Diagram */
-    .diagram{padding:46px 0;border-bottom:1px solid var(--border)}
-    .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .card{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff;box-shadow:var(--shadow)}
+    .diagram{padding:38px 0;border-bottom:1px solid var(--border)}
+    .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .card{border:1px solid var(--border);border-radius:12px;padding:14px;background:#fff;box-shadow:var(--shadow)}
     .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#444;background:#fafafa;margin-bottom:8px}
     .card p{color:var(--muted)}
-
-    /* Steps */
-    .steps{padding:56px 0;border-bottom:1px solid var(--border)}
-    .steps h2{font-size:32px;margin-bottom:8px}
-    .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .step{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff;box-shadow:var(--shadow)}
+    .steps{padding:42px 0;border-bottom:1px solid var(--border)}
+    .steps h2{font-size:clamp(22px,3vw,32px);margin-bottom:6px}
+    .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .step{border:1px solid var(--border);border-radius:12px;padding:14px;background:#fff;box-shadow:var(--shadow)}
     .kicker{font-size:12px;color:#666;margin-bottom:6px}
     .step h3{font-size:18px;margin-bottom:6px}
     .step p{color:var(--muted)}
-
-    /* Contact */
-    .contact{padding:56px 0;border-bottom:1px solid var(--border)}
-    form{display:grid;gap:14px;margin-top:12px;max-width:560px}
-    input,select,textarea{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:#0b0b0c}
+    .contact{padding:42px 0;border-bottom:1px solid var(--border)}
+    form{display:grid;gap:12px;margin-top:10px;max-width:560px}
+    input,select,textarea{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:#0b0b0c;font-size:16px}
     textarea{min-height:120px}
-    .btn{display:inline-block;padding:12px 18px;border-radius:10px;border:1px solid var(--fg);background:var(--fg);color:#fff}
+    footer{padding:24px 0;text-align:center;color:#6b7280;font-size:14px}
 
-    /* Footer */
-    footer{padding:28px 0;text-align:center;color:#6b7280;font-size:14px}
+    /* Mobile menu overlay */
+    .mnav{position:fixed;inset:64px 0 0 0;background:#fff;z-index:55;display:none;border-top:1px solid var(--border)}
+    .mnav.open{display:block}
+    .mnav .wrap{height:100%;display:flex;flex-direction:column;padding-top:16px}
+    .mnav a{display:block;margin-bottom:12px}
+    .spacer{flex:1}
+    .mnav .btn{width:100%;text-align:center}
 
-    /* Mobile */
+    /* Responsive */
     @media (max-width:980px){
-      .hero-grid{grid-template-columns:1fr;gap:20px}
+      .hero-grid{grid-template-columns:1fr;gap:18px}
       .partner-grid{grid-template-columns:1fr}
       .cards{grid-template-columns:1fr}
       .step-grid{grid-template-columns:1fr}
       nav#nav{display:none}
       .hamb{display:block}
+      .btn.block-sm{width:100%}
     }
     @media (max-width:640px){
-      .hero h1{font-size:34px}
-      body{font-size:16px}
+      body{font-size:15.5px}
+      .frame img{aspect-ratio:16/11}
     }
 
-    /* Print fixes */
+    /* Print */
     @media print{
       header{position:static !important}
-      .hamb,.cta{display:none !important}
+      .hamb,.btn{display:none !important}
+      .mnav{display:none !important}
     }
   </style>
 </head>
@@ -109,15 +112,24 @@
       </svg>
       <strong>Chargyn</strong>
     </div>
-    <!-- Uniform, button-style header items; removed 'Contact' -->
     <nav id="nav">
-      <a class="cta" href="#partner">Partners</a>
-      <a class="cta" href="#how">How it works</a>
-      <a class="cta primary" href="#contact">Get in touch</a>
+      <a class="btn outline" href="#partner">Partners</a>
+      <a class="btn outline" href="#how">How it works</a>
+      <a class="btn" href="#contact">Get in touch</a>
     </nav>
-    <button class="hamb" id="hamb" aria-label="Menu">Menu</button>
+    <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false">Menu</button>
   </div>
 </header>
+
+<!-- Mobile menu overlay -->
+<nav class="mnav" id="mnav" aria-hidden="true">
+  <div class="wrap">
+    <a class="btn outline" href="#partner">Partners</a>
+    <a class="btn outline" href="#how">How it works</a>
+    <a class="btn" href="#contact">Get in touch</a>
+    <div class="spacer"></div>
+  </div>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -126,13 +138,13 @@
       <h1>Public EV charging for your property</h1>
       <p>Powered by Tesla Superchargers. We design, install, operate, and monitor. No staffing required.</p>
       <div class="actions">
-        <a class="cta primary" href="#contact">Host a station</a>
-        <span class="cta primary">Min 250 kW per stall</span>
-        <span class="cta primary">Maintenance by Tesla</span>
+        <a class="btn" href="#contact">Host a station</a>
+        <a class="btn outline" href="#partner">Min 250 kW per stall</a>
+        <a class="btn outline" href="#partner">Maintenance by Tesla</a>
       </div>
     </div>
     <div class="frame">
-      <img src="/hero.jpeg" alt="Chargyn site with Tesla Superchargers">
+      <img src="/hero.jpeg" alt="Chargyn site with Tesla Superchargers" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -174,19 +186,19 @@
         <li>Zero interference with normal business operations</li>
         <li>Option to run chargers only during off hours</li>
       </ul>
-      <a class="cta primary" href="#contact">Start a site</a>
+      <a class="btn block-sm" href="#contact">Start a site</a>
     </div>
     <div class="frame">
-      <img src="/night.jpeg" alt="Supercharger site at night">
+      <img src="/night.jpeg" alt="Supercharger site at night" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
 
-<!-- DIAGRAM -->
+<!-- HOW IT WORKS -->
 <section class="diagram" id="how">
   <div class="wrap">
     <h2>How off-hours revenue works</h2>
-    <div class="cards" style="margin-top:12px">
+    <div class="cards" style="margin-top:10px">
       <div class="card">
         <span class="tag">Business open (e.g., 9 AM – 5 PM)</span>
         <p>Parking remains private for customers and staff. Chargers can be disabled during these hours.</p>
@@ -203,7 +215,7 @@
 <section class="steps">
   <div class="wrap">
     <h2>From inquiry to live site</h2>
-    <div class="step-grid" style="margin-top:12px">
+    <div class="step-grid" style="margin-top:10px">
       <div class="step">
         <div class="kicker">Step 1</div>
         <h3>Site review</h3>
@@ -241,7 +253,7 @@
         <option>Other</option>
       </select>
       <textarea name="message" placeholder="Message" required></textarea>
-      <button class="btn" type="submit">Send</button>
+      <button class="btn block" type="submit">Send</button>
     </form>
   </div>
 </section>
@@ -254,9 +266,18 @@
   // Year
   document.getElementById('y').textContent = new Date().getFullYear();
 
-  // Mobile nav toggle
-  const hamb=document.getElementById('hamb'), nav=document.getElementById('nav');
-  if(hamb){ hamb.onclick=()=>{ nav.style.display = (nav.style.display==='flex'?'none':'flex'); } }
+  // Mobile menu
+  const hamb=document.getElementById('hamb');
+  const mnav=document.getElementById('mnav');
+  hamb?.addEventListener('click',()=>{
+    const open = mnav.classList.toggle('open');
+    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mnav.setAttribute('aria-hidden', open ? 'false' : 'true');
+  });
+  // Close menu on link tap
+  mnav?.addEventListener('click',e=>{
+    if(e.target.tagName==='A'){ mnav.classList.remove('open'); hamb.setAttribute('aria-expanded','false'); mnav.setAttribute('aria-hidden','true'); }
+  });
 
   // Formspree AJAX
   const FORM_ENDPOINT = "https://formspree.io/f/xkgplkda";
@@ -268,15 +289,9 @@
     data.append('_captcha','false');
     try{
       const res = await fetch(FORM_ENDPOINT, { method:'POST', body:data, headers:{'Accept':'application/json'} });
-      if(res.ok){
-        alert('Thanks. Message sent.');
-        form.reset();
-      }else{
-        alert('Submission failed. Please try again later.');
-      }
-    }catch(err){
-      alert('Network error. Please try again.');
-    }
+      if(res.ok){ alert('Thanks. Message sent.'); form.reset(); }
+      else{ alert('Submission failed. Please try again later.'); }
+    }catch(err){ alert('Network error. Please try again.'); }
   });
 </script>
 
