@@ -4,21 +4,22 @@
   <meta charset="utf-8">
   <title>Chargyn — Public EV Charging</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Public EV charging. Powered by Tesla Superchargers. Minimum 250 kW per stall.">
+  <meta name="description" content="Fast public EV charging. Powered by Tesla Superchargers. Minimum 250 kW per stall.">
   <style>
     :root{
       --bg:#0E0E10; --fg:#FFFFFF; --muted:#8A8D92; --acc:#29E36A; --border:#222;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+    body{background:var(--bg);color:var(--fg);font:17px/1.58 -apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
     a{text-decoration:none;color:var(--fg)}
     .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 
-    /* Header contrast on mobile (item 6) */
-    header{position:sticky;top:0;height:64px;display:flex;align-items:center;border-bottom:1px solid var(--border);background:#0E0E10CC}
+    /* Header */
+    header{position:sticky;top:0;z-index:20;height:64px;display:flex;align-items:center;border-bottom:1px solid var(--border);background:#0E0E10CC}
+    .brand{display:flex;align-items:center;gap:10px}
     nav{margin-left:auto;display:flex;gap:28px;font-size:15px}
 
-    /* Tighter hero spacing (item 8) */
+    /* Hero */
     .hero{
       min-height:520px;
       background:url('/hero.jpeg') center/cover no-repeat;
@@ -27,17 +28,14 @@
       border-bottom:1px solid var(--border);
       position:relative;
     }
-    .overlay{
-      position:absolute;inset:0;
-      background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(14,14,16,.55));
-      z-index:0;
-    }
-    .hero-content{position:relative;z-index:1;max-width:660px}
-    .hero h1{font-size:44px;line-height:1.15;margin-bottom:14px}
+    .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(14,14,16,.55));z-index:0}
+    .hero-content{position:relative;z-index:1;max-width:720px}
+    .hero h1{font-size:48px;line-height:1.12;margin-bottom:10px}
     .hero p{color:var(--muted);margin-bottom:20px;font-size:18px}
     .btn{display:inline-block;padding:12px 20px;border-radius:8px;border:1px solid var(--border)}
     .primary{background:var(--acc);color:#000;border-color:var(--acc)}
 
+    /* Sections */
     section{padding:64px 0;border-bottom:1px solid var(--border)}
     h2{font-size:32px;margin-bottom:12px}
     p{margin-bottom:12px;color:var(--muted)}
@@ -45,19 +43,31 @@
     @media (max-width:900px){.grid{grid-template-columns:1fr}}
     img{width:100%;border-radius:12px}
 
+    /* Checklist */
+    .checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+    .checklist div{background:#111;border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+
+    /* Off-hours diagram */
+    .diagram{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
+    .card{background:#111;border:1px solid var(--border);border-radius:12px;padding:14px}
+    .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#BFC5CC}
+
+    /* Contact form */
     form{display:grid;gap:14px;margin-top:20px}
-    input,select,textarea{
-      background:#111;border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--fg)
-    }
+    input,select,textarea{background:#111;border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--fg)}
     textarea{min-height:120px}
+
     footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
   </style>
 </head>
-
 <body>
 
 <header class="wrap">
-  <div style="font-weight:600;font-size:20px">Chargyn</div>
+  <div class="brand">
+    <!-- Simple SVG logo -->
+    <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
+    <div style="font-weight:600;font-size:20px">Chargyn</div>
+  </div>
   <nav>
     <a href="#about">About</a>
     <a href="#partner">Partner</a>
@@ -67,18 +77,27 @@
 
 <section class="hero">
   <div class="overlay"></div>
-  <div class="hero-content">
-    <h1>Public EV charging. Powered by Tesla Superchargers. Minimum 250 kW.</h1>
-    <p>Official Tesla Superchargers. Simple pricing. Fast support.</p>
+  <div class="hero-content wrap">
+    <h1>Fast public EV charging.<br>Powered by Tesla Superchargers.</h1>
+    <p>Every location targets a minimum 250 kW per stall. Simple pricing. Real support.</p>
     <a class="btn primary" href="#partner">Partner with us</a>
   </div>
 </section>
 
 <section id="about" class="wrap">
   <h2>Reliable infrastructure</h2>
-  <p>Chargyn designs, installs, and operates public EV charging focused on uptime and a simple user experience.</p>
-  <!-- Currently serving (item 7) -->
+  <p>Chargyn designs, installs, and operates public EV charging with a focus on uptime and a simple driver experience.</p>
   <p><strong>Currently serving:</strong> Los Angeles County</p>
+
+  <!-- Credibility checklist -->
+  <div class="checklist">
+    <div>✔ Permitting</div>
+    <div>✔ Utility coordination</div>
+    <div>✔ Construction & trenching</div>
+    <div>✔ Real-time uptime monitoring</div>
+    <div>✔ Revenue share reporting</div>
+    <div>✔ ADA compliance & signage</div>
+  </div>
 </section>
 
 <section id="partner" class="wrap grid">
@@ -86,10 +105,8 @@
     <h2>Turn your parking into revenue</h2>
     <p>We install and operate chargers on private property. We handle permitting, power coordination, construction, and monitoring.</p>
 
-    <!-- Off-hours leasing explicit copy -->
     <p><strong>Off-hours leasing model:</strong> When a site is closed, chargers run for the public. During business hours they can be disabled so customer parking stays clear. Landlords and tenants earn a revenue share without adding staff.</p>
 
-    <!-- Property owners get (item 3) -->
     <p><strong>Property owners get:</strong></p>
     <ul style="margin:0 0 12px 18px">
       <li>Revenue share</li>
@@ -98,17 +115,35 @@
       <li>Option to run chargers only during off-hours</li>
     </ul>
 
-    <!-- Credibility line (item 4) -->
     <p><em>Fully permitted installations. ADA compliant. Utility coordination handled.</em></p>
+
+    <!-- Inline CTA -->
+    <p style="margin-top:10px"><strong>Interested in hosting a station?</strong></p>
+    <a class="btn primary" href="#contact">Get in touch</a>
   </div>
-  <img src="/night.jpeg" alt="Supercharger at night">
+
+  <!-- Keep your existing night image -->
+  <img src="/night.jpeg" alt="Chargyn fast charger at night">
+</section>
+
+<section class="wrap">
+  <h2>How off-hours revenue works</h2>
+  <div class="diagram">
+    <div class="card">
+      <span class="tag">Business open (e.g., 9 AM – 5 PM)</span>
+      <p style="margin-top:8px">Parking is private. Chargers are disabled to keep spots clear for customers and staff.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Business closed (e.g., 5 PM – 9 AM)</span>
+      <p style="margin-top:8px">Chargers are open to the public. Usage generates revenue that is shared with the property.</p>
+    </div>
+  </div>
 </section>
 
 <section id="contact" class="wrap">
   <h2>Contact</h2>
   <p>We reply within one business day.</p>
 
-  <!-- Subject dropdown (item 5) -->
   <form method="POST" action="#">
     <input name="name" placeholder="Name" required>
     <input name="email" type="email" placeholder="Email" required>
@@ -127,12 +162,9 @@
 </section>
 
 <footer>
-  © <span id="y"></span> Chargyn
+  © <span id="y"></span> Chargyn • Support: info@chargyn.com
 </footer>
 
-<script>
-  document.getElementById('y').textContent=new Date().getFullYear();
-</script>
-
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
