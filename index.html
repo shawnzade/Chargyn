@@ -19,19 +19,34 @@
     .brand{display:flex;align-items:center;gap:10px}
     nav{margin-left:auto;display:flex;gap:28px;font-size:15px}
 
-    /* Hero */
+    /* HERO (updated for left alignment + blur panel) */
     .hero{
       min-height:520px;
       background:url('/hero.jpeg') center/cover no-repeat;
-      display:flex;flex-direction:column;justify-content:center;
+      display:flex;
+      align-items:center;
       padding:80px 24px 60px;
       border-bottom:1px solid var(--border);
       position:relative;
+      text-align:left;
     }
-    .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(14,14,16,.55));z-index:0}
-    .hero-content{position:relative;z-index:1;max-width:720px}
-    .hero h1{font-size:48px;line-height:1.12;margin-bottom:10px}
+    .overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(120deg,rgba(0,0,0,.55),rgba(0,0,0,.25) 70%, rgba(0,0,0,0) 100%);
+      z-index:0;
+    }
+    .hero-content{
+      position:relative;
+      z-index:1;
+      max-width:520px;
+      padding:28px 32px;
+      background:rgba(0,0,0,0.38);
+      backdrop-filter:blur(6px);
+      border-radius:12px;
+    }
+    .hero h1{font-size:48px;line-height:1.12;margin-bottom:12px}
     .hero p{color:var(--muted);margin-bottom:20px;font-size:18px}
+
     .btn{display:inline-block;padding:12px 20px;border-radius:8px;border:1px solid var(--border)}
     .primary{background:var(--acc);color:#000;border-color:var(--acc)}
 
@@ -64,7 +79,6 @@
 
 <header class="wrap">
   <div class="brand">
-    <!-- Simple SVG logo -->
     <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
       <circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/>
       <path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/>
@@ -92,14 +106,13 @@
   <p>Chargyn designs, installs, and operates public EV charging with a focus on uptime and a simple driver experience.</p>
   <p><strong>Currently serving:</strong> Los Angeles County</p>
 
-  <!-- Credibility checklist -->
   <div class="checklist">
     <div>✔ Permitting</div>
     <div>✔ Utility coordination</div>
     <div>✔ Construction and trenching</div>
-    <div>✔ Real time uptime monitoring</div>
+    <div>✔ Real-time uptime monitoring</div>
     <div>✔ Revenue share reporting</div>
-    <div>✔ ADA compliance and signage</div>
+    <div>✔ ADA compliance & signage</div>
   </div>
 </section>
 
@@ -108,7 +121,7 @@
     <h2>Turn your parking into revenue</h2>
     <p>We install and operate chargers on private property. We handle permitting, power coordination, construction, and monitoring.</p>
 
-    <p><strong>Off hours leasing model:</strong> When a site is closed, chargers run for the public. During business hours they can be disabled so customer parking stays clear. Landlords and tenants earn a revenue share without adding staff.</p>
+    <p><strong>Off-hours leasing model:</strong> When a site is closed, chargers run for the public. During business hours they can be disabled so customer parking stays clear. Landlords and tenants earn a revenue share without adding staff.</p>
 
     <p><strong>Property owners get:</strong></p>
     <ul style="margin:0 0 12px 18px">
@@ -133,12 +146,12 @@
   <h2>How off hours revenue works</h2>
   <div class="diagram">
     <div class="card">
-      <span class="tag">Business open example 9 AM to 5 PM</span>
+      <span class="tag">Business open (e.g., 9 AM – 5 PM)</span>
       <p style="margin-top:8px">Parking is private. Chargers are disabled to keep spots clear for customers and staff.</p>
     </div>
     <div class="card">
-      <span class="tag">Business closed example 5 PM to 9 AM</span>
-      <p style="margin-top:8px">Chargers are open to the public. Usage generates revenue that is shared with the property.</p>
+      <span class="tag">Business closed (e.g., 5 PM – 9 AM)</span>
+      <p style="margin-top:8px">Chargers open to the public. Usage generates shared revenue for the property.</p>
     </div>
   </div>
 </section>
@@ -168,9 +181,7 @@
   © <span id="y"></span> Chargyn • Support: info@chargyn.com
 </footer>
 
-<script>
-  document.getElementById('y').textContent = new Date().getFullYear();
-</script>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 
 </body>
 </html>
