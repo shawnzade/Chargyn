@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Chargyn — Public EV Charging</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Fast public EV charging. Powered by Tesla Superchargers. Minimum 250 kW per stall.">
+  <meta name="description" content="Fast public EV charging. Powered by Tesla Superchargers.">
   <style>
     :root{
       --bg:#0E0E10; --fg:#FFFFFF; --muted:#8A8D92; --acc:#29E36A; --border:#222;
@@ -65,7 +65,10 @@
 <header class="wrap">
   <div class="brand">
     <!-- Simple SVG logo -->
-    <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
+    <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/>
+      <path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/>
+    </svg>
     <div style="font-weight:600;font-size:20px">Chargyn</div>
   </div>
   <nav>
@@ -79,7 +82,7 @@
   <div class="overlay"></div>
   <div class="hero-content wrap">
     <h1>Fast public EV charging.<br>Powered by Tesla Superchargers.</h1>
-    <p>Every location targets a minimum 250 kW per stall. Simple pricing. Real support.</p>
+    <p>Simple pricing. Real support. Zero setup cost for property owners.</p>
     <a class="btn primary" href="#partner">Partner with us</a>
   </div>
 </section>
@@ -93,10 +96,10 @@
   <div class="checklist">
     <div>✔ Permitting</div>
     <div>✔ Utility coordination</div>
-    <div>✔ Construction & trenching</div>
-    <div>✔ Real-time uptime monitoring</div>
+    <div>✔ Construction and trenching</div>
+    <div>✔ Real time uptime monitoring</div>
     <div>✔ Revenue share reporting</div>
-    <div>✔ ADA compliance & signage</div>
+    <div>✔ ADA compliance and signage</div>
   </div>
 </section>
 
@@ -105,36 +108,36 @@
     <h2>Turn your parking into revenue</h2>
     <p>We install and operate chargers on private property. We handle permitting, power coordination, construction, and monitoring.</p>
 
-    <p><strong>Off-hours leasing model:</strong> When a site is closed, chargers run for the public. During business hours they can be disabled so customer parking stays clear. Landlords and tenants earn a revenue share without adding staff.</p>
+    <p><strong>Off hours leasing model:</strong> When a site is closed, chargers run for the public. During business hours they can be disabled so customer parking stays clear. Landlords and tenants earn a revenue share without adding staff.</p>
 
     <p><strong>Property owners get:</strong></p>
     <ul style="margin:0 0 12px 18px">
       <li>Revenue share</li>
-      <li>No staffing or maintenance required</li>
-      <li>Zero interference with daily operations</li>
-      <li>Option to run chargers only during off-hours</li>
+      <li>No staffing required</li>
+      <li>Maintenance handled by Tesla</li>
+      <li>Minimum 250 kW fast charging equipment</li>
+      <li>Zero interference with normal business operations</li>
+      <li>Option to run chargers only during off hours</li>
     </ul>
 
     <p><em>Fully permitted installations. ADA compliant. Utility coordination handled.</em></p>
 
-    <!-- Inline CTA -->
     <p style="margin-top:10px"><strong>Interested in hosting a station?</strong></p>
     <a class="btn primary" href="#contact">Get in touch</a>
   </div>
 
-  <!-- Keep your existing night image -->
   <img src="/night.jpeg" alt="Chargyn fast charger at night">
 </section>
 
 <section class="wrap">
-  <h2>How off-hours revenue works</h2>
+  <h2>How off hours revenue works</h2>
   <div class="diagram">
     <div class="card">
-      <span class="tag">Business open (e.g., 9 AM – 5 PM)</span>
+      <span class="tag">Business open example 9 AM to 5 PM</span>
       <p style="margin-top:8px">Parking is private. Chargers are disabled to keep spots clear for customers and staff.</p>
     </div>
     <div class="card">
-      <span class="tag">Business closed (e.g., 5 PM – 9 AM)</span>
+      <span class="tag">Business closed example 5 PM to 9 AM</span>
       <p style="margin-top:8px">Chargers are open to the public. Usage generates revenue that is shared with the property.</p>
     </div>
   </div>
@@ -165,6 +168,9 @@
   © <span id="y"></span> Chargyn • Support: info@chargyn.com
 </footer>
 
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
