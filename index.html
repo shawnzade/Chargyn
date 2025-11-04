@@ -8,7 +8,7 @@
   <style>
     :root{
       --bg:#ffffff; --fg:#0b0b0c; --muted:#58606a; --acc:#29E36A; --border:#E6E8EB;
-      --fg-soft:#222; --shadow:0 6px 16px rgba(0,0,0,.06);
+      --shadow:0 6px 16px rgba(0,0,0,.06);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{background:var(--bg);color:var(--fg);font:16.5px/1.62 -apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
@@ -17,7 +17,7 @@
     .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
     /* Header */
-    header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 0 0 rgba(0,0,0,0)}
+    header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
     .bar{height:66px;display:flex;align-items:center}
     .brand{display:flex;align-items:center;gap:10px}
     .brand svg{flex:0 0 auto}
@@ -31,7 +31,7 @@
     .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding:56px 0}
     .hero h1{font-size:44px;line-height:1.12;margin-bottom:12px;letter-spacing:-.01em}
     .hero p{color:var(--muted);font-size:18px;margin-bottom:18px}
-    .hero .actions{display:flex;gap:12px;margin-top:6px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
     .badge{display:inline-block;font-size:12px;border:1px solid var(--border);border-radius:999px;padding:4px 10px;color:#444;background:#fafafa}
 
     .frame{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
@@ -72,7 +72,7 @@
     /* Contact */
     .contact{padding:56px 0;border-bottom:1px solid var(--border)}
     form{display:grid;gap:14px;margin-top:12px;max-width:560px}
-    input,select,textarea{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--fg)}
+    input,select,textarea{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:#0b0b0c}
     textarea{min-height:120px}
     .btn{display:inline-block;padding:12px 18px;border-radius:10px;border:1px solid var(--fg);background:var(--fg);color:#fff}
 
@@ -91,6 +91,12 @@
     @media (max-width:640px){
       .hero h1{font-size:34px}
       body{font-size:16px}
+    }
+
+    /* Print fixes: prevent sticky/duplicate header in PDFs */
+    @media print{
+      header{position:static !important}
+      .hamb,.cta{display:none !important}
     }
   </style>
 </head>
@@ -128,7 +134,6 @@
       </div>
     </div>
     <div class="frame">
-      <!-- Use your existing hero image -->
       <img src="/hero.jpeg" alt="Chargyn site with Tesla Superchargers">
     </div>
   </div>
@@ -244,7 +249,7 @@
 </section>
 
 <footer>
-  © <span id="y"></span> Chargyn • Support: info@chargyn.com
+  © <span id="y"></span> Chargyn
 </footer>
 
 <script>
@@ -255,7 +260,7 @@
   const hamb=document.getElementById('hamb'); const nav=document.getElementById('nav');
   if(hamb){ hamb.onclick=()=>{ nav.style.display = (nav.style.display==='flex'?'none':'flex'); } }
 
-  // Formspree AJAX (domain-safe)
+  // Formspree AJAX
   const FORM_ENDPOINT = "https://formspree.io/f/xkgplkda";
   const form = document.getElementById('contact-form');
   form.addEventListener('submit', async (e) => {
