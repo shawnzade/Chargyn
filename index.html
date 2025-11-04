@@ -4,179 +4,243 @@
   <meta charset="utf-8">
   <title>Chargyn — Public EV Charging</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Fast public EV charging. Powered by Tesla Superchargers.">
+  <meta name="description" content="Public EV charging for properties. Powered by Tesla Superchargers.">
   <style>
-    :root{--bg:#0E0E10;--fg:#FFFFFF;--muted:#8A8D92;--acc:#29E36A;--border:#222}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--fg);font:17px/1.58 -apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
-    a{text-decoration:none;color:var(--fg)}
-    .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-
-    header{position:sticky;top:0;z-index:20;height:64px;display:flex;align-items:center;border-bottom:1px solid var(--border);background:#0E0E10CC}
-    .brand{display:flex;align-items:center;gap:10px}
-    nav{margin-left:auto;display:flex;gap:28px;font-size:15px}
-    .hamb{display:none;border:1px solid var(--border);border-radius:8px;padding:8px 10px}
-
-    .hero{
-      min-height:520px;background:url('/hero.jpeg') center/cover no-repeat;
-      display:flex;align-items:center;padding:80px 0 60px;border-bottom:1px solid var(--border);
-      position:relative;text-align:left
+    :root{
+      --bg:#ffffff; --fg:#0b0b0c; --muted:#58606a; --acc:#29E36A; --border:#E6E8EB;
+      --fg-soft:#222; --shadow:0 6px 16px rgba(0,0,0,.06);
     }
-    .overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,0,0,.55),rgba(0,0,0,.25) 70%,rgba(0,0,0,0) 100%);z-index:0}
-    .hero .wrap{width:100%;max-width:none;margin:0;padding:0 24px;display:flex;justify-content:flex-start;position:relative;z-index:1}
-    .hero-content{max-width:520px;padding:28px 32px;background:rgba(0,0,0,.38);backdrop-filter:blur(6px);border-radius:12px;margin-left:0}
-    .hero h1{font-size:48px;line-height:1.12;margin-bottom:12px}
-    .hero p{color:var(--muted);margin-bottom:20px;font-size:18px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--fg);font:16.5px/1.62 -apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+    img{display:block;max-width:100%;height:auto}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
-    .btn{display:inline-block;padding:12px 20px;border-radius:8px;border:1px solid var(--border)}
-    .primary{background:var(--acc);color:#000;border-color:var(--acc)}
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 0 0 rgba(0,0,0,0)}
+    .bar{height:66px;display:flex;align-items:center}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand svg{flex:0 0 auto}
+    nav{margin-left:auto;display:flex;gap:28px}
+    .cta{display:inline-block;padding:10px 16px;border:1px solid var(--fg);border-radius:8px}
+    .cta.primary{background:var(--fg);color:#fff;border-color:var(--fg)}
+    .hamb{display:none;border:1px solid var(--border);border-radius:8px;padding:8px 10px;margin-left:auto}
 
-    section{padding:64px 0;border-bottom:1px solid var(--border)}
-    h2{font-size:32px;margin-bottom:12px}
-    p{margin-bottom:12px;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-    img{width:100%;border-radius:12px}
+    /* Hero split */
+    .hero{border-bottom:1px solid var(--border);background:#fff}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding:56px 0}
+    .hero h1{font-size:44px;line-height:1.12;margin-bottom:12px;letter-spacing:-.01em}
+    .hero p{color:var(--muted);font-size:18px;margin-bottom:18px}
+    .hero .actions{display:flex;gap:12px;margin-top:6px}
+    .badge{display:inline-block;font-size:12px;border:1px solid var(--border);border-radius:999px;padding:4px 10px;color:#444;background:#fafafa}
 
-    .checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
-    .checklist div{background:#111;border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+    .frame{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+    .frame img{width:100%;height:100%;object-fit:cover}
 
-    .diagram{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
-    .card{background:#111;border:1px solid var(--border);border-radius:12px;padding:14px}
-    .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#BFC5CC}
+    /* Feature tiles */
+    .tiles{padding:56px 0;border-bottom:1px solid var(--border)}
+    .tiles h2{font-size:32px;margin-bottom:8px}
+    .sub{color:var(--muted);margin-bottom:22px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .tile{border:1px solid var(--border);border-radius:12px;padding:18px;background:#fff;box-shadow:var(--shadow);min-height:120px}
+    .tile h3{font-size:18px;margin-bottom:6px}
+    .tile p{color:var(--muted)}
 
-    form{display:grid;gap:14px;margin-top:20px}
-    input,select,textarea{background:#111;border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--fg)}
+    /* Partner section */
+    .partner{padding:56px 0;border-bottom:1px solid var(--border)}
+    .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+    .partner h2{font-size:32px;margin-bottom:8px}
+    .list{margin:10px 0 14px 18px}
+    .list li{margin:6px 0}
+
+    /* Diagram */
+    .diagram{padding:46px 0;border-bottom:1px solid var(--border)}
+    .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .card{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff;box-shadow:var(--shadow)}
+    .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#444;background:#fafafa;margin-bottom:8px}
+    .card p{color:var(--muted)}
+
+    /* Steps */
+    .steps{padding:56px 0;border-bottom:1px solid var(--border)}
+    .steps h2{font-size:32px;margin-bottom:8px}
+    .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .step{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff;box-shadow:var(--shadow)}
+    .kicker{font-size:12px;color:#666;margin-bottom:6px}
+    .step h3{font-size:18px;margin-bottom:6px}
+    .step p{color:var(--muted)}
+
+    /* Contact */
+    .contact{padding:56px 0;border-bottom:1px solid var(--border)}
+    form{display:grid;gap:14px;margin-top:12px;max-width:560px}
+    input,select,textarea{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--fg)}
     textarea{min-height:120px}
+    .btn{display:inline-block;padding:12px 18px;border-radius:10px;border:1px solid var(--fg);background:var(--fg);color:#fff}
 
-    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:#0f0f10;border:1px solid #2a2a2a;padding:12px 16px;border-radius:10px}
-    .toast.success{border-color:#2f9e44;color:#c1f0c9}
+    /* Footer */
+    footer{padding:28px 0;text-align:center;color:#6b7280;font-size:14px}
 
-    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
-
-    @media (max-width:900px){
+    /* Mobile */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr;gap:20px}
+      .partner-grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .step-grid{grid-template-columns:1fr}
       nav{display:none}
-      .hamb{display:block;margin-left:auto}
-      .grid{grid-template-columns:1fr}
-      .checklist{grid-template-columns:1fr}
+      .hamb{display:block}
     }
     @media (max-width:640px){
-      body{font-size:16px}
-      .hero{min-height:420px}
-      .hero-content{max-width:100%;padding:20px 18px;border-radius:12px}
       .hero h1{font-size:34px}
-      .hero p{font-size:16px}
+      body{font-size:16px}
     }
   </style>
 </head>
 <body>
 
-<header class="wrap">
-  <div class="brand">
-    <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
-      <circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/>
-      <path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/>
-    </svg>
-    <div style="font-weight:600;font-size:20px">Chargyn</div>
+<header>
+  <div class="wrap bar">
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/>
+        <path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/>
+      </svg>
+      <strong>Chargyn</strong>
+    </div>
+    <nav id="nav">
+      <a href="#partner">Partner</a>
+      <a href="#how">How it works</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="cta primary" href="#contact">Get in touch</a>
+    <button class="hamb" id="hamb" aria-label="Menu">Menu</button>
   </div>
-  <nav id="nav">
-    <a href="#about">About</a>
-    <a href="#partner">Partner</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <button class="hamb" id="hamb" aria-label="Menu">Menu</button>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="overlay"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Public EV charging for your property</h1>
+      <p>Powered by Tesla Superchargers. We design, install, operate, and monitor. No staffing required.</p>
+      <div class="actions">
+        <a class="cta primary" href="#contact">Host a station</a>
+        <span class="badge">Min 250 kW per stall</span>
+        <span class="badge">Maintenance by Tesla</span>
+      </div>
+    </div>
+    <div class="frame">
+      <!-- Use your existing hero image -->
+      <img src="/hero.jpeg" alt="Chargyn site with Tesla Superchargers">
+    </div>
+  </div>
+</section>
+
+<!-- TILES -->
+<section class="tiles">
   <div class="wrap">
-    <div class="hero-content">
-      <h1>Fast public EV charging.<br>Powered by Tesla Superchargers.</h1>
-      <p>Simple pricing. Real support. Zero setup cost for property owners.</p>
-      <a class="btn primary" href="#partner">Partner with us</a>
+    <h2>Why host with Chargyn</h2>
+    <p class="sub">Simple program, strong uptime, premium driver experience.</p>
+    <div class="grid-3">
+      <div class="tile">
+        <h3>Turn parking into revenue</h3>
+        <p>Off-hours public charging generates income without affecting daytime operations.</p>
+      </div>
+      <div class="tile">
+        <h3>We handle everything</h3>
+        <p>Permitting, utility coordination, construction, commissioning, and monitoring.</p>
+      </div>
+      <div class="tile">
+        <h3>Fast infrastructure</h3>
+        <p>Minimum 250 kW per stall. Clean layout, clear signage, and simple pricing.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="about" class="wrap">
-  <h2>Reliable infrastructure</h2>
-  <p>Chargyn designs, installs, and operates public EV charging with a focus on uptime and a simple driver experience.</p>
-  <p><strong>Currently serving:</strong> Los Angeles County</p>
-
-  <div class="checklist">
-    <div>✔ Permitting</div><div>✔ Utility coordination</div>
-    <div>✔ Construction and trenching</div><div>✔ Real-time uptime monitoring</div>
-    <div>✔ Revenue share reporting</div><div>✔ ADA compliance & signage</div>
-  </div>
-</section>
-
-<section id="partner" class="wrap grid">
-  <div>
-    <h2>Turn your parking into revenue</h2>
-    <p>We install and operate chargers on private property. We handle permitting, power coordination, construction, and monitoring.</p>
-
-    <p><strong>Off-hours leasing model:</strong> When a site is closed, chargers run for the public. During business hours they can be disabled so customer parking stays clear. Landlords and tenants earn a revenue share without adding staff.</p>
-
-    <p><strong>Property owners get:</strong></p>
-    <ul style="margin:0 0 12px 18px">
-      <li>Revenue share</li>
-      <li>No staffing required</li>
-      <li>Maintenance handled by Tesla</li>
-      <li>Minimum 250 kW fast charging equipment</li>
-      <li>Zero interference with normal business operations</li>
-      <li>Option to run chargers only during off hours</li>
-    </ul>
-
-    <p><em>Fully permitted installations. ADA compliant. Utility coordination handled.</em></p>
-
-    <p style="margin-top:10px"><strong>Interested in hosting a station?</strong></p>
-    <a class="btn primary" href="#contact">Get in touch</a>
-  </div>
-
-  <img src="/night.jpeg" alt="Chargyn fast charger at night">
-</section>
-
-<section class="wrap">
-  <h2>How off hours revenue works</h2>
-  <div class="diagram">
-    <div class="card">
-      <span class="tag">Business open (e.g., 9 AM – 5 PM)</span>
-      <p style="margin-top:8px">Parking is private. Chargers are disabled to keep spots clear for customers and staff.</p>
+<!-- PARTNER -->
+<section id="partner" class="partner">
+  <div class="wrap partner-grid">
+    <div>
+      <h2>Partner program</h2>
+      <p>We install and operate on private property. Chargers can be scheduled off during business hours and open to the public after hours.</p>
+      <p><strong>Property owners get:</strong></p>
+      <ul class="list">
+        <li>Revenue share</li>
+        <li>No staffing required</li>
+        <li>Maintenance handled by Tesla</li>
+        <li>Minimum 250 kW fast charging equipment</li>
+        <li>Zero interference with normal business operations</li>
+        <li>Option to run chargers only during off hours</li>
+      </ul>
+      <a class="cta primary" href="#contact">Start a site</a>
     </div>
-    <div class="card">
-      <span class="tag">Business closed (e.g., 5 PM – 9 AM)</span>
-      <p style="margin-top:8px">Chargers open to the public. Usage generates shared revenue for the property.</p>
+    <div class="frame">
+      <img src="/night.jpeg" alt="Supercharger site at night">
     </div>
   </div>
 </section>
 
-<section id="contact" class="wrap">
-  <h2>Contact</h2>
-  <p>We reply within one business day.</p>
+<!-- DIAGRAM -->
+<section class="diagram" id="how">
+  <div class="wrap">
+    <h2>How off-hours revenue works</h2>
+    <div class="cards" style="margin-top:12px">
+      <div class="card">
+        <span class="tag">Business open (e.g., 9 AM – 5 PM)</span>
+        <p>Parking remains private for customers and staff. Chargers can be disabled during these hours.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Business closed (e.g., 5 PM – 9 AM)</span>
+        <p>Chargers open to the public. Usage generates revenue shared with the property.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- Formspree wired -->
-  <form id="contact-form" method="POST" action="https://formspree.io/f/xkgplkda">
-    <input name="name" placeholder="Name" required>
-    <input name="email" type="email" placeholder="Email" required>
-    <input name="company" placeholder="Company">
-    <select name="subject" required>
-      <option value="" disabled selected>Subject</option>
-      <option>Property Owner / Landlord</option>
-      <option>Business Manager</option>
-      <option>Driver Support</option>
-      <option>Investor Inquiry</option>
-      <option>Other</option>
-    </select>
-    <textarea name="message" placeholder="Message" required></textarea>
+<!-- STEPS -->
+<section class="steps">
+  <div class="wrap">
+    <h2>From inquiry to live site</h2>
+    <div class="step-grid" style="margin-top:12px">
+      <div class="step">
+        <div class="kicker">Step 1</div>
+        <h3>Site review</h3>
+        <p>You share the address and parking layout. We assess power availability and permitting.</p>
+      </div>
+      <div class="step">
+        <div class="kicker">Step 2</div>
+        <h3>Design & approvals</h3>
+        <p>We finalize the layout, utility plan, and permits. Clear timeline and responsibilities.</p>
+      </div>
+      <div class="step">
+        <div class="kicker">Step 3</div>
+        <h3>Build & operate</h3>
+        <p>Construction, commissioning, and ongoing monitoring handled by Chargyn and Tesla.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Formspree helpers -->
-    <input type="hidden" name="_subject" value="Chargyn website contact">
-    <input type="hidden" name="_replyto" value="">
-    <input type="text" name="_honeypot" style="display:none">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://www.chargyn.com/?sent=1">
-
-    <button class="btn primary" type="submit">Send</button>
-  </form>
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p style="color:var(--muted)">We reply within one business day.</p>
+    <form id="contact-form">
+      <input name="name" placeholder="Name" required>
+      <input name="email" type="email" placeholder="Email" required>
+      <input name="company" placeholder="Company">
+      <select name="subject" required>
+        <option value="" disabled selected>Subject</option>
+        <option>Property Owner / Landlord</option>
+        <option>Business Manager</option>
+        <option>Driver Support</option>
+        <option>Investor Inquiry</option>
+        <option>Other</option>
+      </select>
+      <textarea name="message" placeholder="Message" required></textarea>
+      <button class="btn" type="submit">Send</button>
+    </form>
+  </div>
 </section>
 
 <footer>
@@ -184,17 +248,33 @@
 </footer>
 
 <script>
-  document.getElementById('y').textContent=new Date().getFullYear();
+  // Year
+  document.getElementById('y').textContent = new Date().getFullYear();
 
-  const hamb=document.getElementById('hamb');
-  const nav=document.getElementById('nav');
-  if(hamb){hamb.onclick=()=>{nav.style.display=(nav.style.display==='flex'?'none':'flex')}}
+  // Mobile nav
+  const hamb=document.getElementById('hamb'); const nav=document.getElementById('nav');
+  if(hamb){ hamb.onclick=()=>{ nav.style.display = (nav.style.display==='flex'?'none':'flex'); } }
 
-  const params=new URLSearchParams(location.search);
-  if(params.get('sent')==='1'){
-    const t=document.createElement('div');t.className='toast success';t.textContent='Thanks. Message sent.';document.body.appendChild(t);
-    setTimeout(()=>t.remove(),4000);history.replaceState(null,'',location.pathname);
-  }
+  // Formspree AJAX (domain-safe)
+  const FORM_ENDPOINT = "https://formspree.io/f/xkgplkda";
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    data.append('_subject','Chargyn website contact');
+    data.append('_captcha','false');
+    try{
+      const res = await fetch(FORM_ENDPOINT, { method:'POST', body:data, headers:{'Accept':'application/json'} });
+      if(res.ok){
+        alert('Thanks. Message sent.');
+        form.reset();
+      }else{
+        alert('Submission failed. Please try again later.');
+      }
+    }catch(err){
+      alert('Network error. Please try again.');
+    }
+  });
 </script>
 
 </body>
