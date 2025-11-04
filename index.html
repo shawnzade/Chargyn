@@ -18,7 +18,7 @@
     a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--padX)}
 
-    /* Buttons (uniform site-wide) */
+    /* Buttons */
     .btn{display:inline-block;padding:12px 18px;border:1px solid var(--btn);border-radius:10px;background:var(--btn);color:var(--btnText);font-weight:600;line-height:1;white-space:nowrap}
     .btn.outline{background:#fff;color:var(--fg);border-color:var(--fg)}
     .btn.block{width:100%;text-align:center}
@@ -30,25 +30,30 @@
     .brand{display:flex;align-items:center;gap:10px}
     nav#nav{margin-left:auto;display:flex;gap:10px}
 
-    /* Mobile Hamburger */
+    /* Hamburger */
     .hamb{
       display:none;width:40px;height:36px;background:#fff;border:1px solid var(--border);
-      border-radius:10px;position:relative;cursor:pointer;margin-left:auto;margin-right:0;
+      border-radius:10px;position:relative;cursor:pointer;margin-left:auto;margin-right:0
     }
     .hamb span,.hamb::before,.hamb::after{
-      content:"";display:block;position:absolute;left:8px;right:8px;height:2px;background:#111;border-radius:2px
+      content:"";display:block;position:absolute;left:8px;right:8px;height:2px;background:#111;border-radius:2px;transition:transform .2s ease, opacity .2s ease
     }
     .hamb span{top:50%;transform:translateY(-50%)}
     .hamb::before{top:10px}
     .hamb::after{bottom:10px}
+    .hamb[aria-expanded="true"]::before{transform:translateY(8px) rotate(45deg)}
+    .hamb[aria-expanded="true"]::after{transform:translateY(-8px) rotate(-45deg)}
+    .hamb[aria-expanded="true"] span{opacity:0}
 
-    /* Mobile Dropdown */
+    /* Mobile dropdown with fade */
     .mnav{
       position:absolute;top:64px;right:var(--padX);width:220px;background:rgba(255,255,255,.96);
       backdrop-filter:blur(6px);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);
-      z-index:55;display:none;padding:10px;font-size:14px
+      z-index:55;padding:10px;font-size:14px;
+      opacity:0;transform:translateY(-6px);pointer-events:none;
+      transition:opacity .22s ease, transform .22s ease
     }
-    .mnav.open{display:block}
+    .mnav.open{opacity:1;transform:translateY(0);pointer-events:auto}
     .mnav .item{display:block;margin:6px 0}
     .mnav .btn{width:100%;text-align:center}
 
@@ -69,7 +74,7 @@
     .tile{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff;box-shadow:var(--shadow)}
     .tile h3{font-size:18px;margin-bottom:6px}
 
-    /* Partner section */
+    /* Partner */
     .partner{padding:42px 0;border-bottom:1px solid var(--border)}
     .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
     .list{margin:8px 0 12px 18px}
@@ -94,29 +99,27 @@
 
     footer{padding:24px 0;text-align:center;color:#6b7280;font-size:14px}
 
-    /* MOBILE */
+    /* Mobile */
     @media (max-width:980px){
       nav#nav{display:none}
       .hamb{display:block}
 
-      /* Center hero text */
+      /* centered hero text and actions */
       .hero-grid{grid-template-columns:1fr;gap:18px}
       .hero .wrap, .hero-grid > div:first-child{text-align:center}
       .actions{justify-content:center}
 
-      /* Stack tiles */
+      /* stack tiles and cards */
       .grid-3{grid-template-columns:1fr}
-
-      /* Stack how-it-works */
       .cards{grid-template-columns:1fr}
 
-      /* Stack partner */
+      /* partner stacked */
       .partner-grid{grid-template-columns:1fr}
 
-      /* Stack steps */
+      /* steps stacked */
       .step-grid{grid-template-columns:1fr !important}
 
-      /* ✅ SHOW MORE OF NIGHT IMAGE */
+      /* show more of night image */
       .partner .frame{background:#000}
       .partner .frame img{
         object-fit:contain !important;
@@ -133,19 +136,21 @@
 <header>
   <div class="wrap bar">
     <div class="brand">
-      <svg width="26" height="26" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
+      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/>
+        <path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/>
+      </svg>
       <strong>Chargyn</strong>
     </div>
-
     <nav id="nav">
       <a class="btn outline" href="#partner">Partners</a>
       <a class="btn outline" href="#how">How it works</a>
       <a class="btn" href="#contact">Get in touch</a>
     </nav>
-
-    <button class="hamb" id="hamb" aria-expanded="false"><span></span></button>
+    <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false"><span></span></button>
   </div>
 
+  <!-- Mobile dropdown -->
   <nav class="mnav" id="mnav" aria-hidden="true">
     <a class="btn outline sm item" href="#partner">Partners</a>
     <a class="btn outline sm item" href="#how">How it works</a>
@@ -164,7 +169,7 @@
         <a class="btn outline" href="#partner">Maintenance by Tesla</a>
       </div>
     </div>
-    <div class="frame"><img src="/hero.jpeg" alt=""></div>
+    <div class="frame"><img src="/hero.jpeg" alt="Chargyn site hero"></div>
   </div>
 </section>
 
@@ -173,9 +178,18 @@
     <h2>Why host with Chargyn</h2>
     <p class="sub" style="text-align:center">Simple program, strong uptime, premium driver experience.</p>
     <div class="grid-3">
-      <div class="tile"><h3>Turn parking into revenue</h3><p>Off-hours public charging generates income without affecting daytime operations.</p></div>
-      <div class="tile"><h3>We handle everything</h3><p>Permitting, utility coordination, construction, commissioning, and monitoring.</p></div>
-      <div class="tile"><h3>Fast infrastructure</h3><p>Minimum 250 kW per stall. Clean layout, clear signage, and simple pricing.</p></div>
+      <div class="tile">
+        <h3>Turn parking into revenue</h3>
+        <p>Off-hours public charging generates income without affecting daytime operations.</p>
+      </div>
+      <div class="tile">
+        <h3>We handle everything</h3>
+        <p>Permitting, utility coordination, construction, commissioning, and monitoring.</p>
+      </div>
+      <div class="tile">
+        <h3>Fast infrastructure</h3>
+        <p>Minimum 250 kW per stall. Clean layout, clear signage, simple pricing.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -184,13 +198,19 @@
   <div class="wrap partner-grid">
     <div>
       <h2>Partner program</h2>
-      <p>We install and operate on private property. Chargers run after business hours if needed.</p>
+      <p>We install and operate on private property. Chargers can be scheduled off during business hours and open to the public after hours.</p>
+      <p><strong>Property owners get:</strong></p>
       <ul class="list">
-        <li>Revenue share</li><li>No staffing required</li><li>Maintenance handled by Tesla</li><li>250 kW+ fast charging</li><li>No disruption to business</li><li>Off-hours only option</li>
+        <li>Revenue share</li>
+        <li>No staffing required</li>
+        <li>Maintenance handled by Tesla</li>
+        <li>Minimum 250 kW fast charging equipment</li>
+        <li>No interference with normal operations</li>
+        <li>Option to run off hours only</li>
       </ul>
       <a class="btn block-sm" href="#contact">Start a site</a>
     </div>
-    <div class="frame"><img src="/night.jpeg" alt=""></div>
+    <div class="frame"><img src="/night.jpeg" alt="Supercharger site at night"></div>
   </div>
 </section>
 
@@ -198,8 +218,8 @@
   <div class="wrap">
     <h2>How off-hours revenue works</h2>
     <div class="cards" style="margin-top:10px">
-      <div class="card"><span class="tag">Business Open</span><p>Parking stays private, chargers off.</p></div>
-      <div class="card"><span class="tag">Business Closed</span><p>Chargers open to the public and revenue shares.</p></div>
+      <div class="card"><span class="tag">Business open (e.g., 9 AM – 5 PM)</span><p>Parking remains private for customers and staff. Chargers can be disabled during these hours.</p></div>
+      <div class="card"><span class="tag">Business closed (e.g., 5 PM – 9 AM)</span><p>Chargers open to the public. Usage generates revenue shared with the property.</p></div>
     </div>
   </div>
 </section>
@@ -208,9 +228,9 @@
   <div class="wrap">
     <h2>From inquiry to live site</h2>
     <div class="step-grid" style="margin-top:10px">
-      <div class="step"><div class="kicker">Step 1</div><h3>Site review</h3><p>You send address + parking layout.</p></div>
-      <div class="step"><div class="kicker">Step 2</div><h3>Design & permits</h3><p>We handle utility coordination + approvals.</p></div>
-      <div class="step"><div class="kicker">Step 3</div><h3>Build & operate</h3><p>We install, monitor, and manage.</p></div>
+      <div class="step"><div class="kicker">Step 1</div><h3>Site review</h3><p>You share the address and parking layout. We assess power availability and permitting.</p></div>
+      <div class="step"><div class="kicker">Step 2</div><h3>Design and approvals</h3><p>We finalize the layout, utility plan, and permits. Clear timeline and responsibilities.</p></div>
+      <div class="step"><div class="kicker">Step 3</div><h3>Build and operate</h3><p>Construction, commissioning, and ongoing monitoring handled by Chargyn and Tesla.</p></div>
     </div>
   </div>
 </section>
@@ -225,7 +245,11 @@
       <input name="company" placeholder="Company">
       <select name="subject" required>
         <option value="" disabled selected>Subject</option>
-        <option>Property Owner / Landlord</option><option>Business Manager</option><option>Driver Support</option><option>Investor Inquiry</option><option>Other</option>
+        <option>Property Owner / Landlord</option>
+        <option>Business Manager</option>
+        <option>Driver Support</option>
+        <option>Investor Inquiry</option>
+        <option>Other</option>
       </select>
       <textarea name="message" placeholder="Message" required></textarea>
       <button class="btn block" type="submit">Send</button>
@@ -236,13 +260,39 @@
 <footer>© <span id="y"></span> Chargyn</footer>
 
 <script>
-document.getElementById('y').textContent = new Date().getFullYear();
-const hamb=document.getElementById('hamb'), mnav=document.getElementById('mnav');
-hamb.onclick=()=>{const o=mnav.classList.toggle('open');hamb.setAttribute('aria-expanded',o)};
-mnav.onclick=e=>{if(e.target.tagName==='A'){mnav.classList.remove('open');hamb.setAttribute('aria-expanded','false');}};
-const form=document.getElementById('contact-form');
-form.onsubmit=async e=>{e.preventDefault();const d=new FormData(form);d.append('_subject','Chargyn website contact');d.append('_captcha','false');
-const r=await fetch("https://formspree.io/f/xkgplkda",{method:'POST',body:d,headers:{'Accept':'application/json'}});alert(r.ok?'Thanks. Message sent.':'Error. Try again.');if(r.ok)form.reset();};
+  // Year
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Mobile dropdown toggle with fade
+  const hamb=document.getElementById('hamb');
+  const mnav=document.getElementById('mnav');
+  hamb?.addEventListener('click',()=>{
+    const open = mnav.classList.toggle('open');
+    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mnav.setAttribute('aria-hidden', open ? 'false' : 'true');
+  });
+  mnav?.addEventListener('click',e=>{
+    if(e.target.tagName==='A'){
+      mnav.classList.remove('open');
+      hamb.setAttribute('aria-expanded','false');
+      mnav.setAttribute('aria-hidden','true');
+    }
+  });
+
+  // Formspree
+  const form=document.getElementById('contact-form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    data.append('_subject','Chargyn website contact');
+    data.append('_captcha','false');
+    try{
+      const res = await fetch("https://formspree.io/f/xkgplkda",{method:'POST',body:data,headers:{'Accept':'application/json'}});
+      alert(res.ok ? 'Thanks. Message sent.' : 'Submission failed. Try again later.');
+      if(res.ok) form.reset();
+    }catch(_){ alert('Network error. Try again.'); }
+  });
 </script>
+
 </body>
 </html>
