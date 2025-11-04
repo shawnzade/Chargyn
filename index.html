@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Chargyn — Public EV Charging</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Public EV charging powered by Tesla Superchargers. Minimum 250 kW per stall.">
+  <meta name="description" content="Public EV charging. Powered by Tesla Superchargers. Minimum 250 kW per stall.">
   <style>
     :root{
       --bg:#0E0E10; --fg:#FFFFFF; --muted:#8A8D92; --acc:#29E36A; --border:#222;
@@ -14,26 +14,27 @@
     a{text-decoration:none;color:var(--fg)}
     .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 
-    header{position:sticky;top:0;height:64px;display:flex;align-items:center;border-bottom:1px solid var(--border);background:#0E0E10}
+    /* Header contrast on mobile (item 6) */
+    header{position:sticky;top:0;height:64px;display:flex;align-items:center;border-bottom:1px solid var(--border);background:#0E0E10CC}
     nav{margin-left:auto;display:flex;gap:28px;font-size:15px}
 
+    /* Tighter hero spacing (item 8) */
     .hero{
-      height:520px;
+      min-height:520px;
       background:url('/hero.jpeg') center/cover no-repeat;
       display:flex;flex-direction:column;justify-content:center;
-      padding:0 24px;
+      padding:80px 24px 60px;
       border-bottom:1px solid var(--border);
       position:relative;
     }
     .overlay{
       position:absolute;inset:0;
-      background:rgba(0,0,0,0.45);
+      background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(14,14,16,.55));
       z-index:0;
     }
     .hero-content{position:relative;z-index:1;max-width:660px}
-    .hero h1{font-size:46px;line-height:1.15;margin-bottom:14px}
+    .hero h1{font-size:44px;line-height:1.15;margin-bottom:14px}
     .hero p{color:var(--muted);margin-bottom:20px;font-size:18px}
-
     .btn{display:inline-block;padding:12px 20px;border-radius:8px;border:1px solid var(--border)}
     .primary{background:var(--acc);color:#000;border-color:var(--acc)}
 
@@ -41,6 +42,7 @@
     h2{font-size:32px;margin-bottom:12px}
     p{margin-bottom:12px;color:var(--muted)}
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
     img{width:100%;border-radius:12px}
 
     form{display:grid;gap:14px;margin-top:20px}
@@ -66,22 +68,38 @@
 <section class="hero">
   <div class="overlay"></div>
   <div class="hero-content">
-    <h1>Public EV charging that just works, powered by Tesla Superchargers</h1>
-    <p>Each location uses official Tesla Superchargers at a minimum of 250 kW per stall.</p>
+    <h1>Public EV charging. Powered by Tesla Superchargers. Minimum 250 kW.</h1>
+    <p>Official Tesla Superchargers. Simple pricing. Fast support.</p>
     <a class="btn primary" href="#partner">Partner with us</a>
   </div>
 </section>
 
 <section id="about" class="wrap">
   <h2>Reliable infrastructure</h2>
-  <p>Chargyn designs, installs and operates public EV charging focused on uptime and simple user experience.</p>
+  <p>Chargyn designs, installs, and operates public EV charging focused on uptime and a simple user experience.</p>
+  <!-- Currently serving (item 7) -->
+  <p><strong>Currently serving:</strong> Los Angeles County</p>
 </section>
 
 <section id="partner" class="wrap grid">
   <div>
     <h2>Turn your parking into revenue</h2>
-    <p>We install and operate chargers on private property. We handle permitting, power coordination, construction and monitoring.</p>
-    <p>If your business is closed evenings or nights, your parking can generate revenue with no interference to daytime operations.</p>
+    <p>We install and operate chargers on private property. We handle permitting, power coordination, construction, and monitoring.</p>
+
+    <!-- Off-hours leasing explicit copy -->
+    <p><strong>Off-hours leasing model:</strong> When a site is closed, chargers run for the public. During business hours they can be disabled so customer parking stays clear. Landlords and tenants earn a revenue share without adding staff.</p>
+
+    <!-- Property owners get (item 3) -->
+    <p><strong>Property owners get:</strong></p>
+    <ul style="margin:0 0 12px 18px">
+      <li>Revenue share</li>
+      <li>No staffing or maintenance required</li>
+      <li>Zero interference with daily operations</li>
+      <li>Option to run chargers only during off-hours</li>
+    </ul>
+
+    <!-- Credibility line (item 4) -->
+    <p><em>Fully permitted installations. ADA compliant. Utility coordination handled.</em></p>
   </div>
   <img src="/night.jpeg" alt="Supercharger at night">
 </section>
@@ -90,10 +108,19 @@
   <h2>Contact</h2>
   <p>We reply within one business day.</p>
 
+  <!-- Subject dropdown (item 5) -->
   <form method="POST" action="#">
     <input name="name" placeholder="Name" required>
     <input name="email" type="email" placeholder="Email" required>
     <input name="company" placeholder="Company">
+    <select name="subject" required>
+      <option value="" disabled selected>Subject</option>
+      <option>Property Owner / Landlord</option>
+      <option>Business Manager</option>
+      <option>Driver Support</option>
+      <option>Investor Inquiry</option>
+      <option>Other</option>
+    </select>
     <textarea name="message" placeholder="Message" required></textarea>
     <button class="btn primary" type="submit">Send</button>
   </form>
@@ -103,7 +130,9 @@
   © <span id="y"></span> Chargyn
 </footer>
 
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script>
+  document.getElementById('y').textContent=new Date().getFullYear();
+</script>
 
 </body>
 </html>
