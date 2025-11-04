@@ -9,30 +9,31 @@
     :root{
       --bg:#ffffff; --fg:#0b0b0c; --muted:#58606a; --border:#E6E8EB;
       --shadow:0 6px 16px rgba(0,0,0,.06); --wrap:1180px;
-      --btn:#0b0b0c; --btnText:#ffffff;
+      --btn:#0b0b0c; --btnText:#ffffff; --padX:20px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
     img{display:block;max-width:100%;height:auto}
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+    .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--padX)}
 
-    .btn{display:inline-block;padding:12px 18px;border:1px solid var(--btn);border-radius:10px;background:var(--btn);color:var(--btnText);font-weight:600}
+    /* Buttons (uniform site-wide) */
+    .btn{display:inline-block;padding:12px 18px;border:1px solid var(--btn);border-radius:10px;background:var(--btn);color:var(--btnText);font-weight:600;line-height:1;white-space:nowrap}
     .btn.outline{background:#fff;color:var(--fg);border-color:var(--fg)}
     .btn.block{width:100%;text-align:center}
+    .btn.sm{padding:9px 14px;font-size:14px;border-radius:9px}
 
     /* Header */
     header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--border)}
     .bar{height:64px;display:flex;align-items:center;gap:12px}
     .brand{display:flex;align-items:center;gap:10px}
-    .brand svg{flex:0 0 auto}
     nav#nav{margin-left:auto;display:flex;gap:10px}
 
-    /* Hamburger 3 lines */
+    /* Mobile Hamburger */
     .hamb{
-      display:none;margin-left:12px;width:40px;height:36px;background:#fff;border:1px solid var(--border);
-      border-radius:10px;position:relative;cursor:pointer
+      display:none;width:40px;height:36px;background:#fff;border:1px solid var(--border);
+      border-radius:10px;position:relative;cursor:pointer;margin-left:auto;margin-right:0;
     }
     .hamb span,.hamb::before,.hamb::after{
       content:"";display:block;position:absolute;left:8px;right:8px;height:2px;background:#111;border-radius:2px
@@ -41,95 +42,89 @@
     .hamb::before{top:10px}
     .hamb::after{bottom:10px}
 
-    /* Mobile dropdown overlay (not fullscreen) */
+    /* Mobile Dropdown */
     .mnav{
-      position:absolute;top:64px;right:20px;width:260px;background:rgba(255,255,255,.95);
+      position:absolute;top:64px;right:var(--padX);width:220px;background:rgba(255,255,255,.96);
       backdrop-filter:blur(6px);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);
-      z-index:55;display:none;padding:12px
+      z-index:55;display:none;padding:10px;font-size:14px
     }
     .mnav.open{display:block}
-    .mnav a{display:block;margin:8px 0}
+    .mnav .item{display:block;margin:6px 0}
     .mnav .btn{width:100%;text-align:center}
 
     /* Hero */
     .hero{border-bottom:1px solid var(--border);background:#fff}
     .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding:40px 0}
-    .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.15;letter-spacing:-.01em;margin-bottom:10px}
+    .hero h1{font-size:clamp(28px,4vw,44px);margin-bottom:10px}
     .hero p{color:var(--muted);font-size:clamp(15px,2.2vw,18px);margin-bottom:16px}
     .actions{display:flex;gap:10px;flex-wrap:wrap}
     .frame{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
     .frame img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10}
 
-    /* Sections */
+    /* Tiles */
     .tiles{padding:42px 0;border-bottom:1px solid var(--border)}
     .tiles h2{font-size:clamp(22px,3vw,32px);margin-bottom:6px}
     .sub{color:var(--muted);margin-bottom:18px}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .tile{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff;box-shadow:var(--shadow);min-height:120px}
+    .tile{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff;box-shadow:var(--shadow)}
     .tile h3{font-size:18px;margin-bottom:6px}
-    .tile p{color:var(--muted)}
 
+    /* Partner section */
     .partner{padding:42px 0;border-bottom:1px solid var(--border)}
     .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
-    .partner h2{font-size:clamp(22px,3vw,32px);margin-bottom:6px}
     .list{margin:8px 0 12px 18px}
     .list li{margin:6px 0}
 
+    /* How it works */
     .diagram{padding:38px 0;border-bottom:1px solid var(--border)}
     .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .card{border:1px solid var(--border);border-radius:12px;padding:14px;background:#fff;box-shadow:var(--shadow)}
-    .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#444;background:#fafafa;margin-bottom:8px}
-    .card p{color:var(--muted)}
+    .tag{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--border);display:inline-block;margin-bottom:8px}
 
+    /* Steps */
     .steps{padding:42px 0;border-bottom:1px solid var(--border)}
-    .steps h2{font-size:clamp(22px,3vw,32px);margin-bottom:6px}
     .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .step{border:1px solid var(--border);border-radius:12px;padding:14px;background:#fff;box-shadow:var(--shadow)}
-    .kicker{font-size:12px;color:#666;margin-bottom:6px}
-    .step h3{font-size:18px;margin-bottom:6px}
-    .step p{color:var(--muted)}
 
+    /* Contact */
     .contact{padding:42px 0;border-bottom:1px solid var(--border)}
     form{display:grid;gap:12px;margin-top:10px;max-width:560px}
-    input,select,textarea{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:#0b0b0c;font-size:16px}
+    input,select,textarea{border:1px solid var(--border);border-radius:10px;padding:12px 14px}
     textarea{min-height:120px}
 
     footer{padding:24px 0;text-align:center;color:#6b7280;font-size:14px}
 
-    /* Mobile */
+    /* MOBILE */
     @media (max-width:980px){
       nav#nav{display:none}
       .hamb{display:block}
 
-      /* Center hero text and actions on mobile */
+      /* Center hero text */
       .hero-grid{grid-template-columns:1fr;gap:18px}
       .hero .wrap, .hero-grid > div:first-child{text-align:center}
       .actions{justify-content:center}
 
-      /* Stack tiles vertically on mobile */
+      /* Stack tiles */
       .grid-3{grid-template-columns:1fr}
 
-      /* Stack how-it-works cards */
+      /* Stack how-it-works */
       .cards{grid-template-columns:1fr}
 
-      /* Partner stacked */
+      /* Stack partner */
       .partner-grid{grid-template-columns:1fr}
 
-      /* Steps stacked vertically on mobile */
+      /* Stack steps */
       .step-grid{grid-template-columns:1fr !important}
 
-      .btn.block-sm{width:100%}
-    }
-    @media (max-width:640px){
-      body{font-size:15.5px}
-      .frame img{aspect-ratio:16/11}
-    }
-
-    /* Print */
-    @media print{
-      header{position:static !important}
-      .hamb,.btn{display:none !important}
-      .mnav{display:none !important}
+      /* ✅ SHOW MORE OF NIGHT IMAGE */
+      .partner .frame{background:#000}
+      .partner .frame img{
+        object-fit:contain !important;
+        object-position:center center !important;
+        width:100%;
+        max-height:64vh;
+        aspect-ratio:auto !important;
+      }
     }
   </style>
 </head>
@@ -138,132 +133,88 @@
 <header>
   <div class="wrap bar">
     <div class="brand">
-      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
-        <circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/>
-        <path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/>
-      </svg>
+      <svg width="26" height="26" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
       <strong>Chargyn</strong>
     </div>
+
     <nav id="nav">
       <a class="btn outline" href="#partner">Partners</a>
       <a class="btn outline" href="#how">How it works</a>
       <a class="btn" href="#contact">Get in touch</a>
     </nav>
-    <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false"><span></span></button>
+
+    <button class="hamb" id="hamb" aria-expanded="false"><span></span></button>
   </div>
-  <!-- Mobile dropdown overlay -->
+
   <nav class="mnav" id="mnav" aria-hidden="true">
-    <a class="btn outline" href="#partner">Partners</a>
-    <a class="btn outline" href="#how">How it works</a>
-    <a class="btn" href="#contact">Get in touch</a>
+    <a class="btn outline sm item" href="#partner">Partners</a>
+    <a class="btn outline sm item" href="#how">How it works</a>
+    <a class="btn sm item" href="#contact">Get in touch</a>
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
       <h1>Public EV charging for your property</h1>
-      <p>Powered by Tesla Superchargers. We design, install, operate, and monitor. No staffing required.</p>
+      <p>Powered by Tesla Superchargers. We design, install, operate, and monitor.</p>
       <div class="actions">
         <a class="btn" href="#contact">Host a station</a>
-        <a class="btn outline" href="#partner">Min 250 kW per stall</a>
+        <a class="btn outline" href="#partner">250 kW+</a>
         <a class="btn outline" href="#partner">Maintenance by Tesla</a>
       </div>
     </div>
-    <div class="frame">
-      <img src="/hero.jpeg" alt="Chargyn site with Tesla Superchargers" loading="lazy" decoding="async">
-    </div>
+    <div class="frame"><img src="/hero.jpeg" alt=""></div>
   </div>
 </section>
 
-<!-- TILES -->
 <section class="tiles">
   <div class="wrap">
     <h2>Why host with Chargyn</h2>
     <p class="sub" style="text-align:center">Simple program, strong uptime, premium driver experience.</p>
     <div class="grid-3">
-      <div class="tile">
-        <h3>Turn parking into revenue</h3>
-        <p>Off-hours public charging generates income without affecting daytime operations.</p>
-      </div>
-      <div class="tile">
-        <h3>We handle everything</h3>
-        <p>Permitting, utility coordination, construction, commissioning, and monitoring.</p>
-      </div>
-      <div class="tile">
-        <h3>Fast infrastructure</h3>
-        <p>Minimum 250 kW per stall. Clean layout, clear signage, and simple pricing.</p>
-      </div>
+      <div class="tile"><h3>Turn parking into revenue</h3><p>Off-hours public charging generates income without affecting daytime operations.</p></div>
+      <div class="tile"><h3>We handle everything</h3><p>Permitting, utility coordination, construction, commissioning, and monitoring.</p></div>
+      <div class="tile"><h3>Fast infrastructure</h3><p>Minimum 250 kW per stall. Clean layout, clear signage, and simple pricing.</p></div>
     </div>
   </div>
 </section>
 
-<!-- PARTNER -->
 <section id="partner" class="partner">
   <div class="wrap partner-grid">
     <div>
       <h2>Partner program</h2>
-      <p>We install and operate on private property. Chargers can be scheduled off during business hours and open to the public after hours.</p>
-      <p><strong>Property owners get:</strong></p>
+      <p>We install and operate on private property. Chargers run after business hours if needed.</p>
       <ul class="list">
-        <li>Revenue share</li>
-        <li>No staffing required</li>
-        <li>Maintenance handled by Tesla</li>
-        <li>Minimum 250 kW fast charging equipment</li>
-        <li>Zero interference with normal business operations</li>
-        <li>Option to run chargers only during off hours</li>
+        <li>Revenue share</li><li>No staffing required</li><li>Maintenance handled by Tesla</li><li>250 kW+ fast charging</li><li>No disruption to business</li><li>Off-hours only option</li>
       </ul>
       <a class="btn block-sm" href="#contact">Start a site</a>
     </div>
-    <div class="frame">
-      <img src="/night.jpeg" alt="Supercharger site at night" loading="lazy" decoding="async">
-    </div>
+    <div class="frame"><img src="/night.jpeg" alt=""></div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="diagram" id="how">
+<section id="how" class="diagram">
   <div class="wrap">
     <h2>How off-hours revenue works</h2>
     <div class="cards" style="margin-top:10px">
-      <div class="card">
-        <span class="tag">Business open (e.g., 9 AM – 5 PM)</span>
-        <p>Parking remains private for customers and staff. Chargers can be disabled during these hours.</p>
-      </div>
-      <div class="card">
-        <span class="tag">Business closed (e.g., 5 PM – 9 AM)</span>
-        <p>Chargers open to the public. Usage generates revenue shared with the property.</p>
-      </div>
+      <div class="card"><span class="tag">Business Open</span><p>Parking stays private, chargers off.</p></div>
+      <div class="card"><span class="tag">Business Closed</span><p>Chargers open to the public and revenue shares.</p></div>
     </div>
   </div>
 </section>
 
-<!-- STEPS -->
 <section class="steps">
   <div class="wrap">
     <h2>From inquiry to live site</h2>
     <div class="step-grid" style="margin-top:10px">
-      <div class="step">
-        <div class="kicker">Step 1</div>
-        <h3>Site review</h3>
-        <p>You share the address and parking layout. We assess power availability and permitting.</p>
-      </div>
-      <div class="step">
-        <div class="kicker">Step 2</div>
-        <h3>Design & approvals</h3>
-        <p>We finalize the layout, utility plan, and permits. Clear timeline and responsibilities.</p>
-      </div>
-      <div class="step">
-        <div class="kicker">Step 3</div>
-        <h3>Build & operate</h3>
-        <p>Construction, commissioning, and ongoing monitoring handled by Chargyn and Tesla.</p>
-      </div>
+      <div class="step"><div class="kicker">Step 1</div><h3>Site review</h3><p>You send address + parking layout.</p></div>
+      <div class="step"><div class="kicker">Step 2</div><h3>Design & permits</h3><p>We handle utility coordination + approvals.</p></div>
+      <div class="step"><div class="kicker">Step 3</div><h3>Build & operate</h3><p>We install, monitor, and manage.</p></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="contact">
   <div class="wrap">
     <h2>Contact</h2>
@@ -274,11 +225,7 @@
       <input name="company" placeholder="Company">
       <select name="subject" required>
         <option value="" disabled selected>Subject</option>
-        <option>Property Owner / Landlord</option>
-        <option>Business Manager</option>
-        <option>Driver Support</option>
-        <option>Investor Inquiry</option>
-        <option>Other</option>
+        <option>Property Owner / Landlord</option><option>Business Manager</option><option>Driver Support</option><option>Investor Inquiry</option><option>Other</option>
       </select>
       <textarea name="message" placeholder="Message" required></textarea>
       <button class="btn block" type="submit">Send</button>
@@ -286,46 +233,16 @@
   </div>
 </section>
 
-<footer>
-  © <span id="y"></span> Chargyn
-</footer>
+<footer>© <span id="y"></span> Chargyn</footer>
 
 <script>
-  // Year
-  document.getElementById('y').textContent = new Date().getFullYear();
-
-  // Mobile dropdown overlay toggle
-  const hamb=document.getElementById('hamb');
-  const mnav=document.getElementById('mnav');
-  hamb?.addEventListener('click',()=>{
-    const open = mnav.classList.toggle('open');
-    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
-    mnav.setAttribute('aria-hidden', open ? 'false' : 'true');
-  });
-  // Close overlay when clicking a link
-  mnav?.addEventListener('click',e=>{
-    if(e.target.tagName==='A'){
-      mnav.classList.remove('open');
-      hamb.setAttribute('aria-expanded','false');
-      mnav.setAttribute('aria-hidden','true');
-    }
-  });
-
-  // Formspree AJAX
-  const FORM_ENDPOINT = "https://formspree.io/f/xkgplkda";
-  const form = document.getElementById('contact-form');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    data.append('_subject','Chargyn website contact');
-    data.append('_captcha','false');
-    try{
-      const res = await fetch(FORM_ENDPOINT, { method:'POST', body:data, headers:{'Accept':'application/json'} });
-      if(res.ok){ alert('Thanks. Message sent.'); form.reset(); }
-      else{ alert('Submission failed. Please try again later.'); }
-    }catch(err){ alert('Network error. Please try again.'); }
-  });
+document.getElementById('y').textContent = new Date().getFullYear();
+const hamb=document.getElementById('hamb'), mnav=document.getElementById('mnav');
+hamb.onclick=()=>{const o=mnav.classList.toggle('open');hamb.setAttribute('aria-expanded',o)};
+mnav.onclick=e=>{if(e.target.tagName==='A'){mnav.classList.remove('open');hamb.setAttribute('aria-expanded','false');}};
+const form=document.getElementById('contact-form');
+form.onsubmit=async e=>{e.preventDefault();const d=new FormData(form);d.append('_subject','Chargyn website contact');d.append('_captcha','false');
+const r=await fetch("https://formspree.io/f/xkgplkda",{method:'POST',body:d,headers:{'Accept':'application/json'}});alert(r.ok?'Thanks. Message sent.':'Error. Try again.');if(r.ok)form.reset();};
 </script>
-
 </body>
 </html>
