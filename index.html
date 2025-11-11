@@ -82,7 +82,7 @@
     }
 
     @media (max-width:980px){
-      :root{--padX:26px}
+      :root{--padX:34px}
       header{padding-top:6px;padding-bottom:4px}
       .bar{height:auto;min-height:66px;padding-top:4px;padding-bottom:4px}
       nav#nav{display:none}
@@ -238,58 +238,4 @@
         <option>Other</option>
       </select>
       <textarea name="message" placeholder="Message" required aria-label="Message"></textarea>
-      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0">
-      <button class="btn block" type="submit" id="submit-btn">Send</button>
-      <p id="form-msg" aria-live="polite" class="muted" style="margin-top:8px"></p>
-    </form>
-  </div>
-</section>
-
-<footer>© <span id="y"></span> Chargyn · <a href="mailto:hello@chargyn.com">hello@chargyn.com</a></footer>
-
-<noscript><div class="wrap" style="padding:12px 0;color:#58606a">JavaScript is required for the contact form.</div></noscript>
-
-<script>
-  document.getElementById('y').textContent = new Date().getFullYear();
-
-  const hamb = document.getElementById('hamb');
-  const mnav = document.getElementById('mnav');
-  const toggleMenu = (open) => {
-    mnav.classList.toggle('open', open);
-    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
-    mnav.setAttribute('aria-hidden', open ? 'false' : 'true');
-  };
-  hamb?.addEventListener('click', () => toggleMenu(!mnav.classList.contains('open')));
-  document.addEventListener('click', e => {
-    if (mnav.classList.contains('open') && !mnav.contains(e.target) && !hamb.contains(e.target)) toggleMenu(false);
-  });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
-
-  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
-    }, {threshold: 0.08});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  }
-
-  const form = document.getElementById('contact-form');
-  const msg  = document.getElementById('form-msg');
-  const btn  = document.getElementById('submit-btn');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!form.reportValidity()) return;
-    btn.disabled = true;
-    const data = new FormData(form);
-    data.append('_subject','Chargyn website contact');
-    data.append('_captcha','false');
-    try{
-      const res = await fetch('https://formspree.io/f/xkgplkda',{method:'POST',body:data,headers:{'Accept':'application/json'}});
-      if(res.ok){ msg.textContent='Thanks. Message sent.'; form.reset(); }
-      else{ msg.textContent='Submission failed. Please try again later.'; }
-    }catch{ msg.textContent='Network error. Please try again.'; }
-    finally{ btn.disabled=false; }
-  });
-</script>
-
-</body>
-</html>
+      <input type
