@@ -62,7 +62,7 @@
     .tile h3{font-size:18px;margin-bottom:var(--s1)}
     .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
 
-    /* NIGHT IMAGE EXACT HEIGHT MATCH */
+    /* NIGHT IMAGE EXACT HEIGHT MATCH ON DESKTOP */
     @media (min-width:981px){
       .partner-grid{align-items:stretch}
       .partner .frame{
@@ -77,6 +77,7 @@
         height:100%;
         object-fit:contain;
         object-position:center center;
+        filter:none;
       }
     }
 
@@ -85,36 +86,67 @@
     .card{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow)}
     .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#444;background:#fafafa;margin-bottom:var(--s1)}
 
+    /* MOBILE LAYOUT CHANGES */
     @media (max-width:980px){
       nav#nav{display:none}
       .hamb{display:block}
-      /* Extra padding for mobile hero text */
-      .hero-grid{grid-template-columns:1fr;gap:var(--s3);padding:var(--s6) var(--padX) var(--s6);text-align:center}
-      .actions{justify-content:center}
-      .grid-3{grid-template-columns:1fr}
-      .partner-grid{grid-template-columns:1fr}
-      .partner .frame img{object-fit:contain;max-height:64vh}
+
+      /* Bullet indent on mobile */
+      .list{margin:var(--s2) 0 var(--s3) 0;padding-left:calc(var(--padX) + var(--s5));}
+      .list li{margin:6px 0}
+
+      /* HERO: overlay text on dimmed image */
+      .hero-grid{grid-template-columns:1fr;gap:0;padding:0;position:relative}
+      .hero .frame{border-radius:0;border-left:none;border-right:none}
+      .hero .frame img{width:100%;height:60vh;max-height:560px;object-fit:cover;filter:brightness(0.35)}
+      .hero .wrap{padding-left:0;padding-right:0}
+      .hero .overlay{
+        position:absolute;left:var(--padX);right:var(--padX);top:12%; 
+        background:rgba(255,255,255,.95);border-radius:12px;box-shadow:var(--shadow);
+        padding:var(--s5);
+      }
+      .hero .overlay h1{margin-bottom:var(--s2)}
+      .hero .overlay .actions{margin-top:var(--s2);justify-content:flex-start}
+
+      /* PARTNER/NIGHT: overlay bullet list on dimmed image */
+      .partner-grid{grid-template-columns:1fr;position:relative}
+      .partner .frame img{width:100%;height:64vh;max-height:620px;object-fit:cover;filter:brightness(0.35)}
+      .partner-overlay{
+        position:absolute;left:var(--padX);right:var(--padX);top:10%;
+        background:rgba(255,255,255,.95);border-radius:12px;box-shadow:var(--shadow);
+        padding:var(--s5);z-index:2;
+      }
+      /* Hide desktop text block when overlay is used */
+      .partner-grid > div:first-child{visibility:hidden;height:0;margin:0;padding:0}
+
+      /* Cards stack on mobile */
       .cards{grid-template-columns:1fr}
+      /* Keep normal section padding below overlays */
+      .hero-spacer{height:calc(60vh + var(--s6));}
+      .night-spacer{height:calc(64vh + var(--s6));}
     }
+
+    footer{padding:var(--s5) 0;text-align:center;color:#6b7280;font-size:14px}
   </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Chargyn","url":"https://www.chargyn.com/","logo":"https://www.chargyn.com/apple-touch-icon.png","areaServed":"Los Angeles-Long Beach-Anaheim, CA","sameAs":[]}</script>
 </head>
 <body>
 
 <header>
   <div class="wrap bar">
     <div class="brand">
-      <svg width="26" height="26" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
+      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
       <strong>Chargyn</strong>
     </div>
-    <nav id="nav">
+    <nav id="nav" aria-label="Primary">
       <a class="btn outline" href="#focus">Focus</a>
       <a class="btn outline" href="#why">Why us</a>
       <a class="btn outline" href="#pipeline">Pipeline</a>
       <a class="btn" href="#contact">Get in touch</a>
     </nav>
-    <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span></button>
   </div>
-  <nav class="mnav" id="mnav" aria-hidden="true">
+  <nav class="mnav" id="mnav" aria-hidden="true" aria-label="Mobile">
     <a class="btn outline sm item" href="#focus">Focus</a>
     <a class="btn outline sm item" href="#why">Why us</a>
     <a class="btn outline sm item" href="#pipeline">Pipeline</a>
@@ -124,7 +156,7 @@
 
 <section class="hero reveal" id="main">
   <div class="wrap hero-grid">
-    <div>
+    <div class="overlay hero overlay">
       <h1>EV Charging Site Acquisition & Development · Los Angeles</h1>
       <p>We identify, secure, and build commercial fast-charging sites across Greater LA. Powered by Tesla Superchargers.</p>
       <div class="actions">
@@ -133,8 +165,10 @@
         <a class="btn outline" href="#criteria">Site criteria</a>
       </div>
     </div>
-    <div class="frame"><img src="/hero.jpeg" alt="Chargyn commercial fast-charging site" width="1600" height="1000"></div>
+    <div class="frame"><img src="/hero.jpeg" alt="Chargyn commercial fast-charging site" width="1600" height="1000" fetchpriority="high"></div>
   </div>
+  <!-- spacer only visible on mobile to create flow under absolute overlay -->
+  <div class="hero-spacer" aria-hidden="true"></div>
 </section>
 
 <section class="section reveal" id="focus">
@@ -142,9 +176,18 @@
     <h2 class="h2">Our focus</h2>
     <p class="muted" style="margin-bottom:12px">What we are acquiring and developing now in Greater Los Angeles.</p>
     <div class="grid-3">
-      <div class="tile"><h3>Commercial parcels</h3><p class="muted">Retail pads, banks, big box, grocery, and mixed-use with reliable access and visibility.</p></div>
-      <div class="tile"><h3>High-power hardware</h3><p class="muted">250–400 kW per stall. Clear ingress and egress, ADA compliance, and clean wayfinding.</p></div>
-      <div class="tile"><h3>Utility readiness</h3><p class="muted">Proximity to sufficient power, room for gear, and feasible trenching and switchgear.</p></div>
+      <div class="tile">
+        <h3>Commercial parcels</h3>
+        <p class="muted">Retail pads, banks, big box, grocery, and mixed-use with reliable access and visibility.</p>
+      </div>
+      <div class="tile">
+        <h3>High-power hardware</h3>
+        <p class="muted">250–400 kW per stall. Clear ingress and egress, ADA compliance, and clean wayfinding.</p>
+      </div>
+      <div class="tile">
+        <h3>Utility readiness</h3>
+        <p class="muted">Proximity to sufficient power, room for gear, and feasible trenching and switchgear.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -163,8 +206,19 @@
     </div>
     <div class="frame partner">
       <img src="/night.jpeg" alt="Chargyn site at night" width="1600" height="1000" loading="lazy">
+      <!-- Mobile overlay reusing bullet points -->
+      <div class="partner-overlay">
+        <h2 class="h2" style="margin-bottom:8px">Why we are different</h2>
+        <ul class="list">
+          <li>Real estate first: rigorous parcel underwriting and entitlement path.</li>
+          <li>Speed: standardized layouts, templated utility packages, predictable timelines.</li>
+          <li>Operations: maintenance handled by Tesla; remote monitoring and simple pricing.</li>
+          <li>Alignment: clean revenue share with landlords; minimal disruption to daytime trade.</li>
+        </ul>
+      </div>
     </div>
   </div>
+  <div class="night-spacer" aria-hidden="true"></div>
 </section>
 
 <section class="section reveal" id="how">
@@ -198,7 +252,7 @@
       <li>Room for equipment pads, signage, ADA stalls, and lighting.</li>
       <li>Clean lease or site control path; ability to operate off-hours if needed.</li>
     </ul>
-    <div style="margin-top:14px"><a class="btn" href="/site-criteria.pdf" target="_blank">Download one-pager</a></div>
+    <div style="margin-top:14px"><a class="btn" href="/site-criteria.pdf" target="_blank" rel="noopener">Download one-pager</a></div>
   </div>
 </section>
 
@@ -207,10 +261,10 @@
     <h2 class="h2">Contact</h2>
     <p class="muted">We respond within one business day.</p>
     <form id="contact-form" novalidate>
-      <input name="name" placeholder="Name" required>
-      <input name="email" type="email" placeholder="Email" required>
-      <input name="company" placeholder="Company">
-      <select name="subject" required>
+      <input name="name" placeholder="Name" autocomplete="name" required aria-label="Your name">
+      <input name="email" type="email" placeholder="Email" autocomplete="email" required aria-label="Your email">
+      <input name="company" placeholder="Company" autocomplete="organization" aria-label="Company">
+      <select name="subject" required aria-label="Subject">
         <option value="" disabled selected>Subject</option>
         <option>Site Submission</option>
         <option>Landlord / Property Owner</option>
@@ -218,25 +272,44 @@
         <option>Investor / Partner</option>
         <option>Other</option>
       </select>
-      <textarea name="message" placeholder="Message" required></textarea>
-      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0">
+      <textarea name="message" placeholder="Message" required aria-label="Message"></textarea>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0">
       <button class="btn block" type="submit" id="submit-btn">Send</button>
-      <p id="form-msg" class="muted" style="margin-top:8px"></p>
+      <p id="form-msg" aria-live="polite" class="muted" style="margin-top:8px"></p>
     </form>
   </div>
 </section>
 
-<footer>© <span id="y"></span> Chargyn · <a href="mailto:hello@chargyn.com">hello@chargyn.com</a></footer>
+<footer>© <span id="y"></span> Chargyn</footer>
+
+<noscript><div class="wrap" style="padding:12px 0;color:#58606a">JavaScript is required for the contact form.</div></noscript>
 
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
-  const hamb = document.getElementById('hamb'); const mnav = document.getElementById('mnav');
-  const toggleMenu = (open) => { mnav.classList.toggle('open', open); hamb.setAttribute('aria-expanded', open ? 'true' : 'false'); mnav.setAttribute('aria-hidden', open ? 'false' : 'true'); };
-  hamb.addEventListener('click', () => toggleMenu(!mnav.classList.contains('open')));
-  document.addEventListener('click', e => { if (mnav.classList.contains('open') && !mnav.contains(e.target) && !hamb.contains(e.target)) toggleMenu(false); });
+
+  const hamb = document.getElementById('hamb');
+  const mnav = document.getElementById('mnav');
+  const toggleMenu = (open) => {
+    mnav.classList.toggle('open', open);
+    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mnav.setAttribute('aria-hidden', open ? 'false' : 'true');
+  };
+  hamb?.addEventListener('click', () => toggleMenu(!mnav.classList.contains('open')));
+  document.addEventListener('click', e => {
+    if (mnav.classList.contains('open') && !mnav.contains(e.target) && !hamb.contains(e.target)) toggleMenu(false);
+  });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
 
-  const form = document.getElementById('contact-form'); const msg = document.getElementById('form-msg'); const btn = document.getElementById('submit-btn');
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+    }, {threshold: 0.08});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  }
+
+  const form = document.getElementById('contact-form');
+  const msg  = document.getElementById('form-msg');
+  const btn  = document.getElementById('submit-btn');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.reportValidity()) return;
@@ -247,8 +320,8 @@
     try{
       const res = await fetch('https://formspree.io/f/xkgplkda',{method:'POST',body:data,headers:{'Accept':'application/json'}});
       if(res.ok){ msg.textContent='Thanks. Message sent.'; form.reset(); }
-      else{ msg.textContent='Submission failed. Try later.'; }
-    }catch{ msg.textContent='Network error. Try again.'; }
+      else{ msg.textContent='Submission failed. Please try again later.'; }
+    }catch{ msg.textContent='Network error. Please try again.'; }
     finally{ btn.disabled=false; }
   });
 </script>
