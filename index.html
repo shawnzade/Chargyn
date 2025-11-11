@@ -48,15 +48,24 @@
     section, header + nav, footer { scroll-margin-top:84px; }
 
     .hero{border-bottom:1px solid var(--border);background:#fff}
-    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--s6);align-items:start;padding:var(--s7) 0}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:var(--s6);align-items:start;padding:var(--s7) 0}
     .hero h1{font-size:clamp(28px,4vw,44px);margin-bottom:var(--s2);letter-spacing:-.01em}
     .hero p{color:var(--muted);font-size:clamp(15px,2.2vw,18px);margin-bottom:var(--s3)}
     .actions{display:flex;gap:10px;flex-wrap:wrap}
     .frame{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);position:relative}
 
-    /* HERO IMAGE focal point lower to show charger */
-    .hero .frame{align-self:start;max-height:420px}
-    .hero .frame img{width:50%;height:50%;object-fit:cover;object-position:center 100%}
+    /* HERO IMAGE smaller column */
+    .hero .frame{
+      align-self:start;
+      max-height:360px;
+      background:#000;
+    }
+    .hero .frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center 80%;
+    }
 
     .section{padding:var(--s7) 0;border-bottom:1px solid var(--border)}
     .h2{font-size:clamp(22px,3vw,32px);margin-bottom:var(--s2)}
@@ -66,11 +75,18 @@
     .tile h3{font-size:18px;margin-bottom:var(--s1)}
     .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);align-items:start}
 
-    /* Night image slightly smaller than text and biased lower */
-    .partner .frame{align-self:start;max-height:460px;background:#000}
-    .partner .frame img{width:100%;height:100%;object-fit:cover;object-position:center 70%}
+    .partner .frame{
+      align-self:start;
+      max-height:460px;
+      background:#000;
+    }
+    .partner .frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center 70%;
+    }
 
-    /* Cards for Operating Model */
     .cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
     .card{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow)}
     .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#444;background:#fafafa;margin-bottom:var(--s1)}
@@ -79,21 +95,17 @@
       nav#nav{display:none}
       .hamb{display:block}
 
-      /* Mobile hero spacing and focal point */
       .hero-grid{grid-template-columns:1fr;gap:var(--s3);padding:var(--s6) var(--padX) var(--s6);text-align:center}
       .hero .frame{max-height:40vh;margin-top:var(--s3)}
-      .hero .frame img{object-fit:cover;object-position:center 70%}
+      .hero .frame img{object-fit:cover;object-position:center 80%}
 
-      /* Bullet lists indented from screen edge */
       .list{margin:var(--s2) 0 var(--s3) 0;padding-left:calc(var(--padX) + var(--s5))}
       .list li{margin:6px 0}
 
-      /* Night image smaller and focal point */
       .partner-grid{grid-template-columns:1fr}
       .partner .frame{max-height:44vh}
       .partner .frame img{object-fit:cover;object-position:center 70%}
 
-      /* Stack cards and tiles */
       .cards{grid-template-columns:1fr}
       .grid-3{grid-template-columns:1fr}
     }
@@ -236,45 +248,8 @@
 
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
-
-  const hamb = document.getElementById('hamb');
-  const mnav = document.getElementById('mnav');
-  const toggleMenu = (open) => {
-    mnav.classList.toggle('open', open);
-    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
-    mnav.setAttribute('aria-hidden', open ? 'false' : 'true');
-  };
-  hamb?.addEventListener('click', () => toggleMenu(!mnav.classList.contains('open')));
-  document.addEventListener('click', e => {
-    if (mnav.classList.contains('open') && !mnav.contains(e.target) && !hamb.contains(e.target)) toggleMenu(false);
-  });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
-
-  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
-    }, {threshold: 0.08});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  }
-
-  const form = document.getElementById('contact-form');
-  const msg  = document.getElementById('form-msg');
-  const btn  = document.getElementById('submit-btn');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!form.reportValidity()) return;
-    btn.disabled = true;
-    const data = new FormData(form);
-    data.append('_subject','Chargyn website contact');
-    data.append('_captcha','false');
-    try{
-      const res = await fetch('https://formspree.io/f/xkgplkda',{method:'POST',body:data,headers:{'Accept':'application/json'}});
-      if(res.ok){ msg.textContent='Thanks. Message sent.'; form.reset(); }
-      else{ msg.textContent='Submission failed. Please try again later.'; }
-    }catch{ msg.textContent='Network error. Please try again.'; }
-    finally{ btn.disabled=false; }
-  });
-</script>
-
-</body>
-</html>
+  const hamb=document.getElementById('hamb');
+  const mnav=document.getElementById('mnav');
+  const toggleMenu=(o)=>{mnav.classList.toggle('open',o);hamb.setAttribute('aria-expanded',o?'true':'false');mnav.setAttribute('aria-hidden',o?'false':'true');};
+  hamb?.addEventListener('click',()=>toggleMenu(!mnav.classList.contains('open')));
+  document.addEventListener('click',e=>{if(mnav.classList.contains('open')&&!mnav.contains(e.target)&&!hamb.contains(e.target))
