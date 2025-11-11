@@ -2,85 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Chargyn — Public EV Charging</title>
+  <title>Chargyn — EV Charging Site Acquisition & Development — Los Angeles</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Public EV charging for properties. Powered by Tesla Superchargers.">
-  <!-- Resource hints -->
+  <meta name="description" content="EV charging site acquisition and development in Los Angeles. 250 kW+ fast charging. Maintenance by Tesla.">
   <link rel="preconnect" href="https://formspree.io" crossorigin>
-  <!-- Icons -->
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <!-- Open Graph -->
-  <meta property="og:title" content="Chargyn — Public EV Charging">
-  <meta property="og:description" content="Host revenue-generating Tesla Superchargers on your property. 250 kW+ per stall. Maintenance by Tesla.">
+  <meta property="og:title" content="Chargyn — EV Charging Site Acquisition & Development — Los Angeles">
+  <meta property="og:description" content="We acquire and develop commercial fast-charging sites in Greater Los Angeles. 250 kW+ per stall.">
   <meta property="og:image" content="https://www.chargyn.com/hero.jpeg">
   <meta property="og:url" content="https://www.chargyn.com/">
   <meta property="og:type" content="website">
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Chargyn — Public EV Charging">
-  <meta name="twitter:description" content="Host revenue-generating Tesla Superchargers on your property. 250 kW+ per stall.">
+  <meta name="twitter:title" content="Chargyn — EV Charging Site Acquisition & Development — Los Angeles">
+  <meta name="twitter:description" content="We acquire and develop commercial fast-charging sites in Greater Los Angeles. 250 kW+ per stall.">
   <meta name="twitter:image" content="https://www.chargyn.com/hero.jpeg">
-  <!-- Security -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; connect-src https://formspree.io; form-action https://formspree.io; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests">
   <style>
     :root{
       --bg:#ffffff; --fg:#0b0b0c; --muted:#58606a; --border:#E6E8EB;
       --shadow:0 6px 16px rgba(0,0,0,.06); --wrap:1180px; --padX:20px;
-      --s1:6px; --s2:10px; --s3:14px; --s4:18px; --s5:24px; --s6:32px; --s7:42px; --s8:56px;
-      --btn:#0b0b0c; --btnText:#ffffff; --btnRadius:10px;
+      --s1:6px; --s2:10px; --s3:14px; --s4:18px; --s5:24px; --s6:32px; --s7:42px;
+      --btn:#0b0b0c; --btnText:#fff; --btnRadius:10px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-    body{
-      background:var(--bg); color:var(--fg);
-      font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
-      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-      font-synthesis-weight:none; font-synthesis-style:none;
-    }
+    body{background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-synthesis-weight:none;font-synthesis-style:none}
     img{display:block;max-width:100%;height:auto}
     a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--padX)}
-
-    /* Buttons */
     .btn{display:inline-block;padding:12px 18px;border:1px solid var(--btn);border-radius:var(--btnRadius);background:var(--btn);color:var(--btnText);font-weight:600;line-height:1;white-space:nowrap}
     .btn.outline{background:#fff;color:var(--fg);border-color:var(--fg)}
     .btn.block{width:100%;text-align:center}
     .btn.sm{padding:9px 14px;font-size:14px;border-radius:9px}
-
-    /* Header */
     header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--border)}
     .bar{height:64px;display:flex;align-items:center;gap:12px}
     .brand{display:flex;align-items:center;gap:10px}
     nav#nav{margin-left:auto;display:flex;gap:10px}
-
-    /* Hamburger */
-    .hamb{
-      display:none;width:40px;height:36px;background:#fff;border:1px solid var(--border);
-      border-radius:10px;position:relative;cursor:pointer;margin-left:auto;margin-right:0
-    }
-    .hamb span,.hamb::before,.hamb::after{
-      content:"";display:block;position:absolute;left:8px;right:8px;height:2px;background:#111;border-radius:2px;transition:transform .2s ease,opacity .2s ease
-    }
+    .hamb{display:none;width:40px;height:36px;background:#fff;border:1px solid var(--border);border-radius:10px;position:relative;cursor:pointer;margin-left:auto}
+    .hamb span,.hamb::before,.hamb::after{content:"";display:block;position:absolute;left:8px;right:8px;height:2px;background:#111;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
     .hamb span{top:50%;transform:translateY(-50%)}
     .hamb::before{top:10px}
     .hamb::after{bottom:10px}
     .hamb[aria-expanded="true"]::before{transform:translateY(8px) rotate(45deg)}
     .hamb[aria-expanded="true"]::after{transform:translateY(-8px) rotate(-45deg)}
     .hamb[aria-expanded="true"] span{opacity:0}
-
-    /* Mobile dropdown with fade */
-    .mnav{
-      position:absolute;top:64px;right:var(--padX);width:220px;background:rgba(255,255,255,.96);
-      backdrop-filter:blur(6px);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);
-      z-index:55;padding:10px;font-size:14px;
-      opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .22s ease,transform .22s ease
-    }
+    .mnav{position:absolute;top:64px;right:var(--padX);width:220px;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);z-index:55;padding:10px;font-size:14px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .22s ease,transform .22s ease}
     .mnav.open{opacity:1;transform:translateY(0);pointer-events:auto}
     .mnav .item{display:block;margin:6px 0}
     .mnav .btn{width:100%;text-align:center}
-
-    /* Hero */
     .hero{border-bottom:1px solid var(--border);background:#fff}
     .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--s6);align-items:center;padding:var(--s7) 0}
     .hero h1{font-size:clamp(28px,4vw,44px);margin-bottom:var(--s2);letter-spacing:-.01em}
@@ -88,98 +58,49 @@
     .actions{display:flex;gap:10px;flex-wrap:wrap}
     .frame{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);position:relative}
     .frame img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10}
-    @media (max-width:980px){
-      .hero .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,0) 40%);pointer-events:none}
-    }
-
-    /* Tiles */
-    .tiles{padding:var(--s7) 0;border-bottom:1px solid var(--border)}
-    .tiles h2{font-size:clamp(22px,3vw,32px);margin-bottom:var(--s1)}
-    .sub{color:var(--muted);margin-bottom:var(--s3)}
+    @media (max-width:980px){.hero .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,0) 42%);pointer-events:none}}
+    .section{padding:var(--s7) 0;border-bottom:1px solid var(--border)}
+    .h2{font-size:clamp(22px,3vw,32px);margin-bottom:var(--s2)}
+    .muted{color:var(--muted)}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
     .tile{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow);min-height:120px}
     .tile h3{font-size:18px;margin-bottom:var(--s1)}
-    .tile p{color:var(--muted)}
-
-    /* Partner */
-    .partner{padding:var(--s7) 0;border-bottom:1px solid var(--border)}
     .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);align-items:start}
-    .partner h2{font-size:clamp(22px,3vw,32px);margin-bottom:var(--s1)}
     .list{margin:var(--s2) 0 var(--s3) 18px}
     .list li{margin:6px 0}
-
-    /* How it works */
-    .diagram{padding:var(--s6) 0;border-bottom:1px solid var(--border)}
     .cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
     .card{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow)}
     .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#444;background:#fafafa;margin-bottom:var(--s1)}
-    .card p{color:var(--muted)}
-
-    /* Steps */
-    .steps{padding:var(--s7) 0;border-bottom:1px solid var(--border)}
-    .steps h2{font-size:clamp(22px,3vw,32px);margin-bottom:var(--s1)}
-    .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+    .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
     .step{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow)}
     .kicker{font-size:12px;color:#666;margin-bottom:var(--s1)}
-    .step h3{font-size:18px;margin-bottom:var(--s1)}
-    .step p{color:var(--muted)}
-
-    /* Contact */
-    .contact{padding:var(--s7) 0;border-bottom:1px solid var(--border)}
-    form{display:grid;gap:var(--s2);margin-top:var(--s2);max-width:560px}
+    .contact form{display:grid;gap:var(--s2);margin-top:var(--s2);max-width:560px}
     input,select,textarea{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:#0b0b0c;font-size:16px}
     textarea{min-height:120px}
-    .btn[disabled]{opacity:.6;cursor:not-allowed}
-
     footer{padding:var(--s5) 0;text-align:center;color:#6b7280;font-size:14px}
-
-    /* Desktop: fill image column, no black sides, bias to top to keep logo text visible with headroom */
+    /* Desktop partner image fill, bias upward so "Chargyn" text stays visible and no black sides */
     @media (min-width:981px){
       .partner-grid{align-items:stretch}
-      .partner .frame{height:100%; background:#000; display:flex;}
-      .partner .frame img{
-        width:100%; height:100%;
-        object-fit:cover;               /* fill and remove black sides */
-        object-position:center 18%;     /* bias upward to show "Chargyn" with space above */
-      }
+      .partner .frame{height:100%;background:#000;display:flex}
+      .partner .frame img{width:100%;height:100%;object-fit:cover;object-position:center 14%}
     }
-
-    /* Mobile */
+    /* Mobile stacks */
     @media (max-width:980px){
       nav#nav{display:none}
       .hamb{display:block}
-
-      /* Center hero text and actions */
       .hero-grid{grid-template-columns:1fr;gap:var(--s3)}
       .hero .wrap, .hero-grid > div:first-child{text-align:center}
       .actions{justify-content:center}
-
-      /* Stack tiles and cards */
       .grid-3{grid-template-columns:1fr}
       .cards{grid-template-columns:1fr}
-
-      /* Partner stacked */
       .partner-grid{grid-template-columns:1fr}
-
-      /* Steps stacked */
-      .step-grid{grid-template-columns:1fr !important}
-
-      /* Mobile: show more of night image without crop */
+      .steps-grid{grid-template-columns:1fr}
       .partner .frame{background:#000}
-      .partner .frame img{
-        object-fit:contain !important; object-position:center center !important;
-        width:100%; max-height:64vh; aspect-ratio:auto !important;
-      }
+      .partner .frame img{object-fit:contain !important;object-position:center center !important;width:100%;max-height:64vh;aspect-ratio:auto !important}
     }
-
-    /* Section reveal animations */
-    @media (prefers-reduced-motion:no-preference){
-      .reveal{opacity:0;transform:translateY(10px);transition:opacity .22s ease, transform .22s ease}
-      .reveal.in{opacity:1;transform:none}
-    }
-    @media (prefers-reduced-motion:reduce){
-      .reveal,.reveal.in{opacity:1;transform:none}
-    }
+    /* Reveal */
+    @media (prefers-reduced-motion:no-preference){.reveal{opacity:0;transform:translateY(10px);transition:opacity .22s ease,transform .22s ease}.reveal.in{opacity:1;transform:none}}
+    @media (prefers-reduced-motion:reduce){.reveal,.reveal.in{opacity:1;transform:none}}
   </style>
 </head>
 <body>
@@ -187,123 +108,145 @@
 <header>
   <div class="wrap bar">
     <div class="brand">
-      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
-        <circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/>
-        <path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/>
-      </svg>
+      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
       <strong>Chargyn</strong>
     </div>
     <nav id="nav">
-      <a class="btn outline" href="#partner">Partners</a>
-      <a class="btn outline" href="#how">How it works</a>
+      <a class="btn outline" href="#focus">Focus</a>
+      <a class="btn outline" href="#why">Why us</a>
+      <a class="btn outline" href="#pipeline">Pipeline</a>
       <a class="btn" href="#contact">Get in touch</a>
     </nav>
     <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false"><span></span></button>
   </div>
-  <!-- Mobile dropdown -->
   <nav class="mnav" id="mnav" aria-hidden="true">
-    <a class="btn outline sm item" href="#partner">Partners</a>
-    <a class="btn outline sm item" href="#how">How it works</a>
+    <a class="btn outline sm item" href="#focus">Focus</a>
+    <a class="btn outline sm item" href="#why">Why us</a>
+    <a class="btn outline sm item" href="#pipeline">Pipeline</a>
     <a class="btn sm item" href="#contact">Get in touch</a>
   </nav>
 </header>
 
 <!-- HERO -->
-<section class="hero reveal">
+<section class="hero reveal" id="main">
   <div class="wrap hero-grid">
     <div>
-      <h1>Public EV charging for your property</h1>
-      <p>Powered by Tesla Superchargers. We design, install, operate, and monitor.</p>
+      <h1>EV Charging Site Acquisition & Development — Los Angeles</h1>
+      <p>We identify, secure, and build commercial fast-charging sites across Greater LA. Powered by Tesla Superchargers.</p>
       <div class="actions">
-        <a class="btn" href="#contact">Host a station</a>
-        <a class="btn outline" href="#partner">250 kW+</a>
-        <a class="btn outline" href="#partner">Maintenance by Tesla</a>
+        <a class="btn" href="#contact">Discuss a site</a>
+        <a class="btn outline" href="#focus">250 kW+</a>
+        <a class="btn outline" href="#criteria">Site criteria</a>
       </div>
     </div>
-    <div class="frame">
-      <img src="/hero.jpeg" alt="Chargyn Tesla Supercharger site" width="1600" height="1000" fetchpriority="high" decoding="async">
-    </div>
+    <div class="frame"><img src="/hero.jpeg" alt="Chargyn commercial fast-charging site" width="1600" height="1000" fetchpriority="high" decoding="async"></div>
   </div>
 </section>
 
-<!-- TILES -->
-<section class="tiles reveal">
+<!-- OUR FOCUS -->
+<section class="section reveal" id="focus">
   <div class="wrap">
-    <h2>Why host with Chargyn</h2>
-    <p class="sub" style="text-align:center">Simple program, strong uptime, premium driver experience.</p>
+    <h2 class="h2">Our focus</h2>
+    <p class="muted" style="margin-bottom:12px">What we are acquiring and developing now in Greater Los Angeles.</p>
     <div class="grid-3">
-      <div class="tile"><h3>Turn parking into revenue</h3><p>Off-hours public charging generates income without affecting daytime operations.</p></div>
-      <div class="tile"><h3>We handle everything</h3><p>Permitting, utility coordination, construction, commissioning, and monitoring.</p></div>
-      <div class="tile"><h3>Fast infrastructure</h3><p>Minimum 250 kW per stall. Clean layout, clear signage, simple pricing.</p></div>
+      <div class="tile">
+        <h3>Commercial parcels</h3>
+        <p class="muted">Retail pads, banks, big box, grocery, and mixed-use with reliable access and visibility.</p>
+      </div>
+      <div class="tile">
+        <h3>High-power hardware</h3>
+        <p class="muted">250–400 kW per stall. Clear ingress/egress, ADA compliance, and clean wayfinding.</p>
+      </div>
+      <div class="tile">
+        <h3>Utility readiness</h3>
+        <p class="muted">Proximity to sufficient power, room for gear, and feasible trenching and switchgear.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PARTNER -->
-<section id="partner" class="partner reveal">
+<!-- WHY WE'RE DIFFERENT -->
+<section class="section reveal" id="why">
   <div class="wrap partner-grid">
     <div>
-      <h2>Partner program</h2>
-      <p>We install and operate on private property. Chargers can be scheduled off during business hours and open to the public after hours.</p>
-      <p><strong>Property owners get:</strong></p>
+      <h2 class="h2">Why we’re different</h2>
       <ul class="list">
-        <li>Revenue share</li>
-        <li>No staffing required</li>
-        <li>Maintenance handled by Tesla</li>
-        <li>Minimum 250 kW fast charging equipment</li>
-        <li>No interference with normal operations</li>
-        <li>Option to run off hours only</li>
+        <li>Real estate first: rigorous parcel underwriting and entitlement path.</li>
+        <li>Speed: standardized layouts, templated utility packages, predictable timelines.</li>
+        <li>Operations: maintenance handled by Tesla; remote monitoring and simple pricing.</li>
+        <li>Alignment: clean revenue-share structures with landlords; minimal disruption to daytime trade.</li>
       </ul>
-      <a class="btn block-sm" href="#contact">Start a site</a>
+      <div style="margin-top:14px"><a class="btn" href="#contact">Talk to development</a></div>
     </div>
     <div class="frame">
-      <img src="/night.jpeg" alt="Supercharger site at night" width="1600" height="1000" loading="lazy" decoding="async">
+      <img src="/night.jpeg" alt="Chargyn site at night" width="1600" height="1000" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how" class="diagram reveal">
+<!-- HOW OFF-HOURS WORKS -->
+<section class="section reveal" id="how">
   <div class="wrap">
-    <h2>How off-hours revenue works</h2>
+    <h2 class="h2">Operating model</h2>
     <div class="cards" style="margin-top:10px">
-      <div class="card"><span class="tag">Business open (e.g., 9 AM – 5 PM)</span><p>Parking remains private for customers and staff. Chargers can be disabled during these hours.</p></div>
-      <div class="card"><span class="tag">Business closed (e.g., 5 PM – 9 AM)</span><p>Chargers open to the public. Usage generates revenue shared with the property.</p></div>
+      <div class="card"><span class="tag">Business hours</span><p class="muted">Charging can be disabled if stalls must remain private for your trade.</p></div>
+      <div class="card"><span class="tag">After hours</span><p class="muted">Public charging generates revenue and does not require your staff.</p></div>
     </div>
   </div>
 </section>
 
-<!-- STEPS -->
-<section class="steps reveal">
+<!-- PIPELINE / CURRENT OPPORTUNITIES -->
+<section class="section reveal" id="pipeline">
   <div class="wrap">
-    <h2>From inquiry to live site</h2>
-    <div class="step-grid" style="margin-top:10px">
-      <div class="step"><div class="kicker">Step 1</div><h3>Site review</h3><p>You share the address and parking layout. We assess power availability and permitting.</p></div>
-      <div class="step"><div class="kicker">Step 2</div><h3>Design and approvals</h3><p>We finalize the layout, utility plan, and permits. Clear timeline and responsibilities.</p></div>
-      <div class="step"><div class="kicker">Step 3</div><h3>Build and operate</h3><p>Construction, commissioning, and ongoing monitoring handled by Chargyn and Tesla.</p></div>
+    <h2 class="h2">Current opportunities</h2>
+    <p class="muted">Actively sourcing in LA County and the Valley. Parcels with existing parking and straightforward utility access preferred.</p>
+    <div class="grid-3" style="margin-top:14px">
+      <div class="tile"><h3>LA Westside</h3><p class="muted">Targeting 6–12 stalls near arterial corridors and grocery anchors.</p></div>
+      <div class="tile"><h3>San Fernando Valley</h3><p class="muted">8–16 stalls near big box retail; space for switchgear and ADA.</p></div>
+      <div class="tile"><h3>South Bay</h3><p class="muted">High-throughput sites near freeways; trenching feasibility required.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SITE CRITERIA -->
+<section class="section reveal" id="criteria">
+  <div class="wrap">
+    <h2 class="h2">Site criteria</h2>
+    <ul class="list">
+      <li>Parcel with existing paved parking, good visibility, and safe circulation.</li>
+      <li>Power availability or clear upgrade path for 250 kW+ per stall.</li>
+      <li>Room for equipment pads, signage, ADA stalls, and lighting.</li>
+      <li>Clean lease or site control path; ability to operate off-hours if needed.</li>
+    </ul>
+    <div style="margin-top:14px">
+      <a class="btn" href="/site-criteria.pdf">Download one-pager</a>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="contact reveal">
+<section class="section contact reveal" id="contact">
   <div class="wrap">
-    <h2>Contact</h2>
-    <p style="color:var(--muted)">We reply within one business day.</p>
+    <h2 class="h2">Contact</h2>
+    <p class="muted">Direct BD contact for sites and partnerships.</p>
+    <div style="margin:10px 0 16px 0">
+      <strong>Shawn Kohanzadeh</strong> · <a href="tel:+19172137310">(917) 213-7310</a> · <a href="mailto:shawn@chargyn.com">shawn@chargyn.com</a>
+    </div>
     <form id="contact-form">
       <input name="name" placeholder="Name" required>
       <input name="email" type="email" placeholder="Email" required>
       <input name="company" placeholder="Company">
       <select name="subject" required>
         <option value="" disabled selected>Subject</option>
-        <option>Property Owner / Landlord</option>
-        <option>Business Manager</option>
-        <option>Driver Support</option>
-        <option>Investor Inquiry</option>
+        <option>Site Submission</option>
+        <option>Landlord / Property Owner</option>
+        <option>Utility / Municipality</option>
+        <option>Investor / Partner</option>
         <option>Other</option>
       </select>
       <textarea name="message" placeholder="Message" required></textarea>
       <button class="btn block" type="submit">Send</button>
+      <p id="form-msg" aria-live="polite" class="muted" style="margin-top:8px"></p>
     </form>
   </div>
 </section>
@@ -314,7 +257,7 @@
   // Year
   document.getElementById('y').textContent = new Date().getFullYear();
 
-  // Mobile dropdown toggle with fade
+  // Mobile menu
   const hamb=document.getElementById('hamb');
   const mnav=document.getElementById('mnav');
   hamb?.addEventListener('click',()=>{
@@ -322,15 +265,13 @@
     hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
     mnav.setAttribute('aria-hidden', open ? 'false' : 'true');
   });
-  mnav?.addEventListener('click',e=>{
-    if(e.target.tagName==='A'){
-      mnav.classList.remove('open');
-      hamb.setAttribute('aria-expanded','false');
-      mnav.setAttribute('aria-hidden','true');
+  document.addEventListener('click',e=>{
+    if(mnav.classList.contains('open') && !mnav.contains(e.target) && e.target!==hamb){
+      mnav.classList.remove('open'); hamb.setAttribute('aria-expanded','false'); mnav.setAttribute('aria-hidden','true');
     }
   });
 
-  // Section reveal on scroll
+  // Reveal animations
   if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
     const io = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
@@ -340,8 +281,9 @@
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   }
 
-  // Contact form
+  // Formspree inline messaging
   const form=document.getElementById('contact-form');
+  const msg=document.getElementById('form-msg');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn=form.querySelector('button'); btn.disabled=true;
@@ -350,9 +292,9 @@
     data.append('_captcha','false');
     try{
       const res = await fetch("https://formspree.io/f/xkgplkda",{method:'POST',body:data,headers:{'Accept':'application/json'}});
-      alert(res.ok ? 'Thanks. Message sent.' : 'Submission failed. Try again later.');
-      if(res.ok) form.reset();
-    }catch{ alert('Network error. Try again.'); }
+      if(res.ok){ msg.textContent='Thanks. Message sent.'; form.reset(); }
+      else{ msg.textContent='Submission failed. Please try again later.'; }
+    }catch{ msg.textContent='Network error. Please try again.'; }
     finally{ btn.disabled=false; }
   });
 </script>
