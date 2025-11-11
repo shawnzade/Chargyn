@@ -17,7 +17,7 @@
     :root{--bg:#fff;--fg:#0b0b0c;--muted:#58606a;--border:#E6E8EB;--shadow:0 6px 16px rgba(0,0,0,.06);--wrap:1180px;--padX:20px;--s1:6px;--s2:10px;--s3:14px;--s4:18px;--s5:24px;--s6:32px;--s7:42px;--btn:#0b0b0c;--btnText:#fff;--btnRadius:10px}
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-    body{background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-synthesis-weight:none;font-synthesis-style:none}
+    body{background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
     img{display:block;max-width:100%;height:auto}
     a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--wrap);margin:0 auto;padding-left:calc(var(--padX) + env(safe-area-inset-left));padding-right:calc(var(--padX) + env(safe-area-inset-right))}
@@ -45,13 +45,14 @@
     .mnav .item{display:block;margin:6px 0}
     .mnav .btn{width:100%;text-align:center}
 
+    section, header + nav, footer { scroll-margin-top:84px; }
+
     .hero{border-bottom:1px solid var(--border);background:#fff}
     .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--s6);align-items:center;padding:var(--s7) 0}
     .hero h1{font-size:clamp(28px,4vw,44px);margin-bottom:var(--s2);letter-spacing:-.01em}
     .hero p{color:var(--muted);font-size:clamp(15px,2.2vw,18px);margin-bottom:var(--s3)}
     .actions{display:flex;gap:10px;flex-wrap:wrap}
     .frame{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);position:relative}
-    .frame img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10}
 
     .section{padding:var(--s7) 0;border-bottom:1px solid var(--border)}
     .h2{font-size:clamp(22px,3vw,32px);margin-bottom:var(--s2)}
@@ -59,54 +60,36 @@
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
     .tile{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow);min-height:120px}
     .tile h3{font-size:18px;margin-bottom:var(--s1)}
-    .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);align-items:start}
-    .list{margin:var(--s2) 0 var(--s3) 18px}
-    .list li{margin:6px 0}
-    .cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
-    .card{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow)}
-    .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#444;background:#fafafa;margin-bottom:var(--s1)}
-    .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
-    .step{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow)}
+    .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
 
-    .contact form{display:grid;gap:var(--s2);margin-top:var(--s2);max-width:560px}
-    input,select,textarea{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:#0b0b0c;font-size:16px}
-    textarea{min-height:120px}
-    .btn[disabled]{opacity:.6;cursor:not-allowed}
-
-    footer{padding:var(--s5) 0;text-align:center;color:#6b7280;font-size:14px}
-
+    /* NIGHT IMAGE EXACT HEIGHT MATCH */
     @media (min-width:981px){
       .partner-grid{align-items:stretch}
-      .partner .frame{height:100%;background:#000;display:flex}
-      .partner .frame img{width:100%;height:100%;object-fit:cover;object-position:center top}
+      .partner .frame{
+        height:100%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:#000;
+      }
+      .partner .frame img{
+        width:100%;
+        height:100%;
+        object-fit:contain;
+        object-position:center center;
+      }
     }
 
     @media (max-width:980px){
-      :root{--padX:26px}
-      header{padding-top:6px;padding-bottom:4px}
-      .bar{height:auto;min-height:66px;padding-top:4px;padding-bottom:4px}
       nav#nav{display:none}
       .hamb{display:block}
-      .hero-grid{grid-template-columns:1fr;gap:var(--s3);padding:var(--s5) 0 var(--s6)}
-      .hero .wrap,.hero-grid>div:first-child{text-align:center}
+      .hero-grid{grid-template-columns:1fr;gap:var(--s3);padding:var(--s5) 0 var(--s6);text-align:center}
       .actions{justify-content:center}
       .grid-3{grid-template-columns:1fr}
-      .cards{grid-template-columns:1fr}
       .partner-grid{grid-template-columns:1fr}
-      .steps-grid{grid-template-columns:1fr}
-      .partner .frame{background:#000}
-      .partner .frame img{object-fit:contain !important;object-position:center center !important;width:100%;max-height:64vh;aspect-ratio:auto !important}
-    }
-
-    @media (prefers-reduced-motion:no-preference){
-      .reveal{opacity:0;transform:translateY(10px);transition:opacity .22s ease,transform .22s ease}
-      .reveal.in{opacity:1;transform:none}
-    }
-    @media (prefers-reduced-motion:reduce){
-      .reveal,.reveal.in{opacity:1;transform:none}
+      .partner .frame img{object-fit:contain;max-height:64vh}
     }
   </style>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Chargyn","url":"https://www.chargyn.com/","logo":"https://www.chargyn.com/apple-touch-icon.png","areaServed":"Los Angeles-Long Beach-Anaheim, CA","sameAs":[]}</script>
 </head>
 <body>
 
@@ -122,14 +105,9 @@
       <a class="btn outline" href="#pipeline">Pipeline</a>
       <a class="btn" href="#contact">Get in touch</a>
     </nav>
-    <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span></button>
+    <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false"><span></span></button>
   </div>
-  <nav class="mnav" id="mnav" aria-hidden="true" aria-label="Mobile">
-    <a class="btn outline sm item" href="#focus">Focus</a>
-    <a class="btn outline sm item" href="#why">Why us</a>
-    <a class="btn outline sm item" href="#pipeline">Pipeline</a>
-    <a class="btn sm item" href="#contact">Get in touch</a>
-  </nav>
+  <nav class="mnav" id="mnav" aria-hidden="true"><a class="btn outline sm item" href="#focus">Focus</a><a class="btn outline sm item" href="#why">Why us</a><a class="btn outline sm item" href="#pipeline">Pipeline</a><a class="btn sm item" href="#contact">Get in touch</a></nav>
 </header>
 
 <section class="hero reveal" id="main">
@@ -143,7 +121,7 @@
         <a class="btn outline" href="#criteria">Site criteria</a>
       </div>
     </div>
-    <div class="frame"><img src="/hero.jpeg" alt="Chargyn commercial fast-charging site" width="1600" height="1000" fetchpriority="high" decoding="async"></div>
+    <div class="frame"><img src="/hero.jpeg" alt="Chargyn commercial fast-charging site" width="1600" height="1000" fetchpriority="high"></div>
   </div>
 </section>
 
@@ -152,18 +130,9 @@
     <h2 class="h2">Our focus</h2>
     <p class="muted" style="margin-bottom:12px">What we are acquiring and developing now in Greater Los Angeles.</p>
     <div class="grid-3">
-      <div class="tile">
-        <h3>Commercial parcels</h3>
-        <p class="muted">Retail pads, banks, big box, grocery, and mixed-use with reliable access and visibility.</p>
-      </div>
-      <div class="tile">
-        <h3>High-power hardware</h3>
-        <p class="muted">250–400 kW per stall. Clear ingress and egress, ADA compliance, and clean wayfinding.</p>
-      </div>
-      <div class="tile">
-        <h3>Utility readiness</h3>
-        <p class="muted">Proximity to sufficient power, room for gear, and feasible trenching and switchgear.</p>
-      </div>
+      <div class="tile"><h3>Commercial parcels</h3><p class="muted">Retail pads, banks, big box, grocery, and mixed-use with reliable access and visibility.</p></div>
+      <div class="tile"><h3>High-power hardware</h3><p class="muted">250–400 kW per stall. Clear ingress and egress, ADA compliance, and clean wayfinding.</p></div>
+      <div class="tile"><h3>Utility readiness</h3><p class="muted">Proximity to sufficient power, room for gear, and feasible trenching and switchgear.</p></div>
     </div>
   </div>
 </section>
@@ -181,7 +150,7 @@
       <div style="margin-top:14px"><a class="btn" href="#contact">Talk to development</a></div>
     </div>
     <div class="frame partner">
-      <img src="/night.jpeg" alt="Chargyn site at night" width="1600" height="1000" loading="lazy" decoding="async">
+      <img src="/night.jpeg" alt="Chargyn site at night" width="1600" height="1000" loading="lazy">
     </div>
   </div>
 </section>
@@ -217,7 +186,7 @@
       <li>Room for equipment pads, signage, ADA stalls, and lighting.</li>
       <li>Clean lease or site control path; ability to operate off-hours if needed.</li>
     </ul>
-    <div style="margin-top:14px"><a class="btn" href="/site-criteria.pdf" target="_blank" rel="noopener">Download one-pager</a></div>
+    <div style="margin-top:14px"><a class="btn" href="/site-criteria.pdf" target="_blank">Download one-pager</a></div>
   </div>
 </section>
 
@@ -226,10 +195,10 @@
     <h2 class="h2">Contact</h2>
     <p class="muted">We respond within one business day.</p>
     <form id="contact-form" novalidate>
-      <input name="name" placeholder="Name" autocomplete="name" required aria-label="Your name">
-      <input name="email" type="email" placeholder="Email" autocomplete="email" required aria-label="Your email">
-      <input name="company" placeholder="Company" autocomplete="organization" aria-label="Company">
-      <select name="subject" required aria-label="Subject">
+      <input name="name" placeholder="Name" required>
+      <input name="email" type="email" placeholder="Email" required>
+      <input name="company" placeholder="Company">
+      <select name="subject" required>
         <option value="" disabled selected>Subject</option>
         <option>Site Submission</option>
         <option>Landlord / Property Owner</option>
@@ -237,44 +206,25 @@
         <option>Investor / Partner</option>
         <option>Other</option>
       </select>
-      <textarea name="message" placeholder="Message" required aria-label="Message"></textarea>
-      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0">
+      <textarea name="message" placeholder="Message" required></textarea>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0">
       <button class="btn block" type="submit" id="submit-btn">Send</button>
-      <p id="form-msg" aria-live="polite" class="muted" style="margin-top:8px"></p>
+      <p id="form-msg" class="muted" style="margin-top:8px"></p>
     </form>
   </div>
 </section>
 
 <footer>© <span id="y"></span> Chargyn · <a href="mailto:hello@chargyn.com">hello@chargyn.com</a></footer>
 
-<noscript><div class="wrap" style="padding:12px 0;color:#58606a">JavaScript is required for the contact form.</div></noscript>
-
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
-
-  const hamb = document.getElementById('hamb');
-  const mnav = document.getElementById('mnav');
-  const toggleMenu = (open) => {
-    mnav.classList.toggle('open', open);
-    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
-    mnav.setAttribute('aria-hidden', open ? 'false' : 'true');
-  };
-  hamb?.addEventListener('click', () => toggleMenu(!mnav.classList.contains('open')));
-  document.addEventListener('click', e => {
-    if (mnav.classList.contains('open') && !mnav.contains(e.target) && !hamb.contains(e.target)) toggleMenu(false);
-  });
+  const hamb = document.getElementById('hamb'); const mnav = document.getElementById('mnav');
+  const toggleMenu = (open) => { mnav.classList.toggle('open', open); hamb.setAttribute('aria-expanded', open ? 'true' : 'false'); mnav.setAttribute('aria-hidden', open ? 'false' : 'true'); };
+  hamb.addEventListener('click', () => toggleMenu(!mnav.classList.contains('open')));
+  document.addEventListener('click', e => { if (mnav.classList.contains('open') && !mnav.contains(e.target) && !hamb.contains(e.target)) toggleMenu(false); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
 
-  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
-    }, {threshold: 0.08});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  }
-
-  const form = document.getElementById('contact-form');
-  const msg  = document.getElementById('form-msg');
-  const btn  = document.getElementById('submit-btn');
+  const form = document.getElementById('contact-form'); const msg = document.getElementById('form-msg'); const btn = document.getElementById('submit-btn');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.reportValidity()) return;
@@ -285,8 +235,8 @@
     try{
       const res = await fetch('https://formspree.io/f/xkgplkda',{method:'POST',body:data,headers:{'Accept':'application/json'}});
       if(res.ok){ msg.textContent='Thanks. Message sent.'; form.reset(); }
-      else{ msg.textContent='Submission failed. Please try again later.'; }
-    }catch{ msg.textContent='Network error. Please try again.'; }
+      else{ msg.textContent='Submission failed. Try later.'; }
+    }catch{ msg.textContent='Network error. Try again.'; }
     finally{ btn.disabled=false; }
   });
 </script>
