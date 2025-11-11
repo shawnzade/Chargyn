@@ -81,14 +81,14 @@
       .partner .frame{
         background:#000;
         display:block;
-        aspect-ratio:16/10;      /* consistent window */
-        max-height:560px;        /* prevents it from growing too tall */
+        aspect-ratio:16/10;
+        max-height:560px;
       }
       .partner .frame img{
         width:100%;
         height:100%;
         object-fit:cover;
-        object-position:center 8%; /* near top: logo visible, little sky */
+        object-position:center 15%; /* Adjusted: more of the logo visible */
       }
     }
 
@@ -108,13 +108,13 @@
       .steps-grid{grid-template-columns:1fr}
       .partner .frame{
         background:#000;
-        height:56vh;             /* forces crop window on phones */
+        height:56vh;
       }
       .partner .frame img{
         width:100%;
         height:100%;
         object-fit:cover;
-        object-position:center 12%; /* logo + a bit of sky */
+        object-position:center 18%; /* Adjusted: logo centered better on mobile */
       }
     }
 
