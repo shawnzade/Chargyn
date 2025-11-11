@@ -77,8 +77,8 @@
 
     @media (min-width:981px){
       .partner-grid{align-items:stretch}
-      .partner .frame{height:100%;background:#000;display:flex}
-      .partner .frame img{width:100%;height:100%;object-fit:cover;object-position:center top}
+      .partner .frame{height:auto;background:#000;display:flex;justify-content:center}
+      .partner .frame img{width:100%;max-width:1000px;height:auto;object-fit:contain;object-position:center center}
     }
 
     @media (max-width:980px){
@@ -106,25 +106,25 @@
       .reveal,.reveal.in{opacity:1;transform:none}
     }
   </style>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Chargyn","url":"https://www.chargyn.com/","logo":"https://www.chargyn.com/apple-touch-icon.png","areaServed":"Los Angeles-Long Beach-Anaheim, CA","sameAs":[]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Chargyn","url":"https://www.chargyn.com/","logo":"https://www.chargyn.com/apple-touch-icon.png","areaServed":"Los Angeles-Long Beach-Anaheim, CA"}</script>
 </head>
 <body>
 
 <header>
   <div class="wrap bar">
     <div class="brand">
-      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
+      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
       <strong>Chargyn</strong>
     </div>
-    <nav id="nav" aria-label="Primary">
+    <nav id="nav">
       <a class="btn outline" href="#focus">Focus</a>
       <a class="btn outline" href="#why">Why us</a>
       <a class="btn outline" href="#pipeline">Pipeline</a>
       <a class="btn" href="#contact">Get in touch</a>
     </nav>
-    <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span></button>
+    <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false"><span></span></button>
   </div>
-  <nav class="mnav" id="mnav" aria-hidden="true" aria-label="Mobile">
+  <nav class="mnav" id="mnav">
     <a class="btn outline sm item" href="#focus">Focus</a>
     <a class="btn outline sm item" href="#why">Why us</a>
     <a class="btn outline sm item" href="#pipeline">Pipeline</a>
@@ -143,7 +143,7 @@
         <a class="btn outline" href="#criteria">Site criteria</a>
       </div>
     </div>
-    <div class="frame"><img src="/hero.jpeg" alt="Chargyn commercial fast-charging site" width="1600" height="1000" fetchpriority="high" decoding="async"></div>
+    <div class="frame"><img src="/hero.jpeg" alt="Chargyn commercial fast-charging site"></div>
   </div>
 </section>
 
@@ -152,18 +152,9 @@
     <h2 class="h2">Our focus</h2>
     <p class="muted" style="margin-bottom:12px">What we are acquiring and developing now in Greater Los Angeles.</p>
     <div class="grid-3">
-      <div class="tile">
-        <h3>Commercial parcels</h3>
-        <p class="muted">Retail pads, banks, big box, grocery, and mixed-use with reliable access and visibility.</p>
-      </div>
-      <div class="tile">
-        <h3>High-power hardware</h3>
-        <p class="muted">250–400 kW per stall. Clear ingress and egress, ADA compliance, and clean wayfinding.</p>
-      </div>
-      <div class="tile">
-        <h3>Utility readiness</h3>
-        <p class="muted">Proximity to sufficient power, room for gear, and feasible trenching and switchgear.</p>
-      </div>
+      <div class="tile"><h3>Commercial parcels</h3><p class="muted">Retail pads, banks, big box, grocery, and mixed-use with reliable access and visibility.</p></div>
+      <div class="tile"><h3>High-power hardware</h3><p class="muted">250–400 kW per stall. Clear ingress/egress, ADA compliance, and clean wayfinding.</p></div>
+      <div class="tile"><h3>Utility readiness</h3><p class="muted">Proximity to sufficient power, room for gear, and feasible trenching and switchgear.</p></div>
     </div>
   </div>
 </section>
@@ -180,9 +171,7 @@
       </ul>
       <div style="margin-top:14px"><a class="btn" href="#contact">Talk to development</a></div>
     </div>
-    <div class="frame partner">
-      <img src="/night.jpeg" alt="Chargyn site at night" width="1600" height="1000" loading="lazy" decoding="async">
-    </div>
+    <div class="frame partner"><img src="/night.jpeg" alt="Chargyn site at night"></div>
   </div>
 </section>
 
@@ -217,7 +206,7 @@
       <li>Room for equipment pads, signage, ADA stalls, and lighting.</li>
       <li>Clean lease or site control path; ability to operate off-hours if needed.</li>
     </ul>
-    <div style="margin-top:14px"><a class="btn" href="/site-criteria.pdf" target="_blank" rel="noopener">Download one-pager</a></div>
+    <div style="margin-top:14px"><a class="btn" href="/site-criteria.pdf">Download one-pager</a></div>
   </div>
 </section>
 
@@ -226,10 +215,10 @@
     <h2 class="h2">Contact</h2>
     <p class="muted">We respond within one business day.</p>
     <form id="contact-form" novalidate>
-      <input name="name" placeholder="Name" autocomplete="name" required aria-label="Your name">
-      <input name="email" type="email" placeholder="Email" autocomplete="email" required aria-label="Your email">
-      <input name="company" placeholder="Company" autocomplete="organization" aria-label="Company">
-      <select name="subject" required aria-label="Subject">
+      <input name="name" placeholder="Name" required>
+      <input name="email" type="email" placeholder="Email" required>
+      <input name="company" placeholder="Company">
+      <select name="subject" required>
         <option value="" disabled selected>Subject</option>
         <option>Site Submission</option>
         <option>Landlord / Property Owner</option>
@@ -237,9 +226,8 @@
         <option>Investor / Partner</option>
         <option>Other</option>
       </select>
-      <textarea name="message" placeholder="Message" required aria-label="Message"></textarea>
-      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0">
-      <button class="btn block" type="submit" id="submit-btn">Send</button>
+      <textarea name="message" placeholder="Message" required></textarea>
+      <button class="btn block" type="submit">Send</button>
       <p id="form-msg" aria-live="polite" class="muted" style="margin-top:8px"></p>
     </form>
   </div>
@@ -247,49 +235,7 @@
 
 <footer>© <span id="y"></span> Chargyn · <a href="mailto:hello@chargyn.com">hello@chargyn.com</a></footer>
 
-<noscript><div class="wrap" style="padding:12px 0;color:#58606a">JavaScript is required for the contact form.</div></noscript>
-
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
-
-  const hamb = document.getElementById('hamb');
-  const mnav = document.getElementById('mnav');
-  const toggleMenu = (open) => {
-    mnav.classList.toggle('open', open);
-    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
-    mnav.setAttribute('aria-hidden', open ? 'false' : 'true');
-  };
-  hamb?.addEventListener('click', () => toggleMenu(!mnav.classList.contains('open')));
-  document.addEventListener('click', e => {
-    if (mnav.classList.contains('open') && !mnav.contains(e.target) && !hamb.contains(e.target)) toggleMenu(false);
-  });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
-
-  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
-    }, {threshold: 0.08});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  }
-
-  const form = document.getElementById('contact-form');
-  const msg  = document.getElementById('form-msg');
-  const btn  = document.getElementById('submit-btn');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!form.reportValidity()) return;
-    btn.disabled = true;
-    const data = new FormData(form);
-    data.append('_subject','Chargyn website contact');
-    data.append('_captcha','false');
-    try{
-      const res = await fetch('https://formspree.io/f/xkgplkda',{method:'POST',body:data,headers:{'Accept':'application/json'}});
-      if(res.ok){ msg.textContent='Thanks. Message sent.'; form.reset(); }
-      else{ msg.textContent='Submission failed. Please try again later.'; }
-    }catch{ msg.textContent='Network error. Please try again.'; }
-    finally{ btn.disabled=false; }
-  });
-</script>
-
-</body>
-</html>
+  const hamb=document.getElementById('hamb'),mnav=document.getElementById('mnav');
+ 
