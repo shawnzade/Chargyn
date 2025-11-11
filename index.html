@@ -54,9 +54,9 @@
     .actions{display:flex;gap:10px;flex-wrap:wrap}
     .frame{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);position:relative}
 
-    /* Make hero image smaller than text on desktop */
+    /* HERO IMAGE focal point lower to show charger */
     .hero .frame{align-self:start;max-height:420px}
-    .hero .frame img{width:100%;height:100%;object-fit:contain;object-position:center}
+    .hero .frame img{width:100%;height:100%;object-fit:cover;object-position:center 70%}
 
     .section{padding:var(--s7) 0;border-bottom:1px solid var(--border)}
     .h2{font-size:clamp(22px,3vw,32px);margin-bottom:var(--s2)}
@@ -66,9 +66,9 @@
     .tile h3{font-size:18px;margin-bottom:var(--s1)}
     .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);align-items:start}
 
-    /* Night image smaller than text on desktop */
+    /* Night image slightly smaller than text and biased lower */
     .partner .frame{align-self:start;max-height:460px;background:#000}
-    .partner .frame img{width:100%;height:100%;object-fit:contain;object-position:center}
+    .partner .frame img{width:100%;height:100%;object-fit:cover;object-position:center 70%}
 
     /* Cards for Operating Model */
     .cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
@@ -79,21 +79,21 @@
       nav#nav{display:none}
       .hamb{display:block}
 
-      /* Mobile hero spacing and smaller image */
+      /* Mobile hero spacing and focal point */
       .hero-grid{grid-template-columns:1fr;gap:var(--s3);padding:var(--s6) var(--padX) var(--s6);text-align:center}
       .hero .frame{max-height:40vh;margin-top:var(--s3)}
-      .hero .frame img{object-fit:contain}
+      .hero .frame img{object-fit:cover;object-position:center 70%}
 
       /* Bullet lists indented from screen edge */
       .list{margin:var(--s2) 0 var(--s3) 0;padding-left:calc(var(--padX) + var(--s5))}
       .list li{margin:6px 0}
 
-      /* Night image smaller and stacked */
+      /* Night image smaller and focal point */
       .partner-grid{grid-template-columns:1fr}
       .partner .frame{max-height:44vh}
-      .partner .frame img{object-fit:contain}
+      .partner .frame img{object-fit:cover;object-position:center 70%}
 
-      /* Stack cards */
+      /* Stack cards and tiles */
       .cards{grid-template-columns:1fr}
       .grid-3{grid-template-columns:1fr}
     }
