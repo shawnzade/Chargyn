@@ -80,14 +80,21 @@
       }
     }
 
+    /* Cards for Operating Model */
+    .cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+    .card{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow)}
+    .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#444;background:#fafafa;margin-bottom:var(--s1)}
+
     @media (max-width:980px){
       nav#nav{display:none}
       .hamb{display:block}
-      .hero-grid{grid-template-columns:1fr;gap:var(--s3);padding:var(--s5) 0 var(--s6);text-align:center}
+      /* Extra padding for mobile hero text */
+      .hero-grid{grid-template-columns:1fr;gap:var(--s3);padding:var(--s6) var(--padX) var(--s6);text-align:center}
       .actions{justify-content:center}
       .grid-3{grid-template-columns:1fr}
       .partner-grid{grid-template-columns:1fr}
       .partner .frame img{object-fit:contain;max-height:64vh}
+      .cards{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -96,10 +103,10 @@
 <header>
   <div class="wrap bar">
     <div class="brand">
-      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
+      <svg width="26" height="26" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
       <strong>Chargyn</strong>
     </div>
-    <nav id="nav" aria-label="Primary">
+    <nav id="nav">
       <a class="btn outline" href="#focus">Focus</a>
       <a class="btn outline" href="#why">Why us</a>
       <a class="btn outline" href="#pipeline">Pipeline</a>
@@ -107,7 +114,12 @@
     </nav>
     <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false"><span></span></button>
   </div>
-  <nav class="mnav" id="mnav" aria-hidden="true"><a class="btn outline sm item" href="#focus">Focus</a><a class="btn outline sm item" href="#why">Why us</a><a class="btn outline sm item" href="#pipeline">Pipeline</a><a class="btn sm item" href="#contact">Get in touch</a></nav>
+  <nav class="mnav" id="mnav" aria-hidden="true">
+    <a class="btn outline sm item" href="#focus">Focus</a>
+    <a class="btn outline sm item" href="#why">Why us</a>
+    <a class="btn outline sm item" href="#pipeline">Pipeline</a>
+    <a class="btn sm item" href="#contact">Get in touch</a>
+  </nav>
 </header>
 
 <section class="hero reveal" id="main">
@@ -121,7 +133,7 @@
         <a class="btn outline" href="#criteria">Site criteria</a>
       </div>
     </div>
-    <div class="frame"><img src="/hero.jpeg" alt="Chargyn commercial fast-charging site" width="1600" height="1000" fetchpriority="high"></div>
+    <div class="frame"><img src="/hero.jpeg" alt="Chargyn commercial fast-charging site" width="1600" height="1000"></div>
   </div>
 </section>
 
