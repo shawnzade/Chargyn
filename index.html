@@ -75,7 +75,7 @@
 
     footer{padding:var(--s5) 0;text-align:center;color:#6b7280;font-size:14px}
 
-    /* Desktop: show full image within frame */
+    /* Desktop: crop to show full charger, minimal ground */
     @media (min-width:981px){
       .partner-grid{align-items:stretch}
       .frame.partner{
@@ -87,11 +87,12 @@
       .frame.partner img{
         width:100%;
         height:100%;
-        object-fit:contain;
+        object-fit:cover;
+        object-position:center 40%;
       }
     }
 
-    /* Mobile: show full image within frame */
+    /* Mobile: crop to show full charger */
     @media (max-width:980px){
       :root{--padX:50px}
       header{padding-top:6px;padding-bottom:4px}
@@ -112,7 +113,8 @@
       .frame.partner img{
         width:100%;
         height:100%;
-        object-fit:contain;
+        object-fit:cover;
+        object-position:center 45%;
       }
     }
 
