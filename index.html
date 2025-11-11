@@ -13,30 +13,14 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://formspree.io">
   <link rel="preload" as="image" href="/hero.jpeg">
-
   <style>
-    :root{
-      --bg:#ffffff; --fg:#0b0b0c; --muted:#58606a; --border:#E6E8EB;
-      --shadow:0 6px 16px rgba(0,0,0,.06); --wrap:1180px; --padX:20px;
-      --s1:6px; --s2:10px; --s3:14px; --s4:18px; --s5:24px; --s6:32px; --s7:42px;
-      --btn:#0b0b0c; --btnText:#fff; --btnRadius:10px;
-    }
+    :root{--bg:#fff;--fg:#0b0b0c;--muted:#58606a;--border:#E6E8EB;--shadow:0 6px 16px rgba(0,0,0,.06);--wrap:1180px;--padX:20px;--s1:6px;--s2:10px;--s3:14px;--s4:18px;--s5:24px;--s6:32px;--s7:42px;--btn:#0b0b0c;--btnText:#fff;--btnRadius:10px}
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-    body{
-      background:var(--bg); color:var(--fg);
-      font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
-      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-      font-synthesis-weight:none; font-synthesis-style:none;
-    }
+    body{background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-synthesis-weight:none;font-synthesis-style:none}
     img{display:block;max-width:100%;height:auto}
     a{color:inherit;text-decoration:none}
-    .wrap{
-      max-width:var(--wrap);margin:0 auto;
-      padding-left:calc(var(--padX) + env(safe-area-inset-left));
-      padding-right:calc(var(--padX) + env(safe-area-inset-right));
-    }
-
+    .wrap{max-width:var(--wrap);margin:0 auto;padding-left:calc(var(--padX) + env(safe-area-inset-left));padding-right:calc(var(--padX) + env(safe-area-inset-right))}
     .btn{display:inline-block;padding:12px 18px;border:1px solid var(--btn);border-radius:var(--btnRadius);background:var(--btn);color:var(--btnText);font-weight:600;line-height:1;white-space:nowrap}
     .btn.outline{background:#fff;color:var(--fg);border-color:var(--fg)}
     .btn.block{width:100%;text-align:center}
@@ -47,13 +31,8 @@
     .brand{display:flex;align-items:center;gap:10px}
     nav#nav{margin-left:auto;display:flex;gap:10px}
 
-    .hamb{
-      display:none;width:40px;height:36px;background:#fff;border:1px solid var(--border);
-      border-radius:10px;position:relative;cursor:pointer;margin-left:auto
-    }
-    .hamb span,.hamb::before,.hamb::after{
-      content:"";display:block;position:absolute;left:8px;right:8px;height:2px;background:#111;border-radius:2px;transition:transform .2s ease,opacity .2s ease
-    }
+    .hamb{display:none;width:40px;height:36px;background:#fff;border:1px solid var(--border);border-radius:10px;position:relative;cursor:pointer;margin-left:auto}
+    .hamb span,.hamb::before,.hamb::after{content:"";display:block;position:absolute;left:8px;right:8px;height:2px;background:#111;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
     .hamb span{top:50%;transform:translateY(-50%)}
     .hamb::before{top:10px}
     .hamb::after{bottom:10px}
@@ -61,12 +40,7 @@
     .hamb[aria-expanded="true"]::after{transform:translateY(-8px) rotate(-45deg)}
     .hamb[aria-expanded="true"] span{opacity:0}
 
-    .mnav{
-      position:absolute;top:64px;right:calc(var(--padX) + env(safe-area-inset-right));width:220px;background:rgba(255,255,255,.96);
-      backdrop-filter:blur(6px);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);
-      z-index:55;padding:10px;font-size:14px;
-      opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .22s ease,transform .22s ease
-    }
+    .mnav{position:absolute;top:64px;right:calc(var(--padX) + env(safe-area-inset-right));width:220px;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);z-index:55;padding:10px;font-size:14px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .22s ease,transform .22s ease}
     .mnav.open{opacity:1;transform:translateY(0);pointer-events:auto}
     .mnav .item{display:block;margin:6px 0}
     .mnav .btn{width:100%;text-align:center}
@@ -104,31 +78,24 @@
     @media (min-width:981px){
       .partner-grid{align-items:stretch}
       .partner .frame{height:100%;background:#000;display:flex}
-      .partner .frame img{
-        width:100%;height:100%;
-        object-fit:cover;
-        object-position:center top;
-      }
+      .partner .frame img{width:100%;height:100%;object-fit:cover;object-position:center top}
     }
 
     @media (max-width:980px){
-      :root{ --padX:26px; }
+      :root{--padX:26px}
       header{padding-top:6px;padding-bottom:4px}
       .bar{height:auto;min-height:66px;padding-top:4px;padding-bottom:4px}
       nav#nav{display:none}
       .hamb{display:block}
-
       .hero-grid{grid-template-columns:1fr;gap:var(--s3);padding:var(--s5) 0 var(--s6)}
-      .hero .wrap, .hero-grid > div:first-child{text-align:center}
+      .hero .wrap,.hero-grid>div:first-child{text-align:center}
       .actions{justify-content:center}
-
       .grid-3{grid-template-columns:1fr}
       .cards{grid-template-columns:1fr}
       .partner-grid{grid-template-columns:1fr}
       .steps-grid{grid-template-columns:1fr}
-
       .partner .frame{background:#000}
-      .partner .frame img{object-fit:contain !important; object-position:center center !important; width:100%; max-height:64vh; aspect-ratio:auto !important;}
+      .partner .frame img{object-fit:contain !important;object-position:center center !important;width:100%;max-height:64vh;aspect-ratio:auto !important}
     }
 
     @media (prefers-reduced-motion:no-preference){
@@ -139,20 +106,14 @@
       .reveal,.reveal.in{opacity:1;transform:none}
     }
   </style>
-
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization","name":"Chargyn","url":"https://www.chargyn.com/","logo":"https://www.chargyn.com/apple-touch-icon.png","areaServed":"Los Angeles-Long Beach-Anaheim, CA","sameAs":[]}
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Chargyn","url":"https://www.chargyn.com/","logo":"https://www.chargyn.com/apple-touch-icon.png","areaServed":"Los Angeles-Long Beach-Anaheim, CA","sameAs":[]}</script>
 </head>
 <body>
 
 <header>
   <div class="wrap bar">
     <div class="brand">
-      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-        <circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/>
-        <path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/>
-      </svg>
+      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
       <strong>Chargyn</strong>
     </div>
     <nav id="nav" aria-label="Primary">
@@ -182,9 +143,7 @@
         <a class="btn outline" href="#criteria">Site criteria</a>
       </div>
     </div>
-    <div class="frame">
-      <img src="/hero.jpeg" alt="Chargyn commercial fast-charging site" width="1600" height="1000" fetchpriority="high" decoding="async">
-    </div>
+    <div class="frame"><img src="/hero.jpeg" alt="Chargyn commercial fast-charging site" width="1600" height="1000" fetchpriority="high" decoding="async"></div>
   </div>
 </section>
 
@@ -258,9 +217,7 @@
       <li>Room for equipment pads, signage, ADA stalls, and lighting.</li>
       <li>Clean lease or site control path; ability to operate off-hours if needed.</li>
     </ul>
-    <div style="margin-top:14px">
-      <a class="btn" href="/site-criteria.pdf" target="_blank" rel="noopener">Download one-pager</a>
-    </div>
+    <div style="margin-top:14px"><a class="btn" href="/site-criteria.pdf" target="_blank" rel="noopener">Download one-pager</a></div>
   </div>
 </section>
 
@@ -277,4 +234,62 @@
         <option>Site Submission</option>
         <option>Landlord / Property Owner</option>
         <option>Utility / Municipality</option>
-        <option>Investor
+        <option>Investor / Partner</option>
+        <option>Other</option>
+      </select>
+      <textarea name="message" placeholder="Message" required aria-label="Message"></textarea>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0">
+      <button class="btn block" type="submit" id="submit-btn">Send</button>
+      <p id="form-msg" aria-live="polite" class="muted" style="margin-top:8px"></p>
+    </form>
+  </div>
+</section>
+
+<footer>© <span id="y"></span> Chargyn · <a href="mailto:hello@chargyn.com">hello@chargyn.com</a></footer>
+
+<noscript><div class="wrap" style="padding:12px 0;color:#58606a">JavaScript is required for the contact form.</div></noscript>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  const hamb = document.getElementById('hamb');
+  const mnav = document.getElementById('mnav');
+  const toggleMenu = (open) => {
+    mnav.classList.toggle('open', open);
+    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mnav.setAttribute('aria-hidden', open ? 'false' : 'true');
+  };
+  hamb?.addEventListener('click', () => toggleMenu(!mnav.classList.contains('open')));
+  document.addEventListener('click', e => {
+    if (mnav.classList.contains('open') && !mnav.contains(e.target) && !hamb.contains(e.target)) toggleMenu(false);
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+    }, {threshold: 0.08});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  }
+
+  const form = document.getElementById('contact-form');
+  const msg  = document.getElementById('form-msg');
+  const btn  = document.getElementById('submit-btn');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    btn.disabled = true;
+    const data = new FormData(form);
+    data.append('_subject','Chargyn website contact');
+    data.append('_captcha','false');
+    try{
+      const res = await fetch('https://formspree.io/f/xkgplkda',{method:'POST',body:data,headers:{'Accept':'application/json'}});
+      if(res.ok){ msg.textContent='Thanks. Message sent.'; form.reset(); }
+      else{ msg.textContent='Submission failed. Please try again later.'; }
+    }catch{ msg.textContent='Network error. Please try again.'; }
+    finally{ btn.disabled=false; }
+  });
+</script>
+
+</body>
+</html>
