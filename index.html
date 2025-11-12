@@ -17,7 +17,7 @@
     :root{--bg:#fff;--fg:#0b0b0c;--muted:#58606a;--border:#E6E8EB;--shadow:0 6px 16px rgba(0,0,0,.06);--wrap:1180px;--padX:20px;--s1:6px;--s2:10px;--s3:14px;--s4:18px;--s5:24px;--s6:32px;--s7:42px;--btn:#0b0b0c;--btnText:#fff;--btnRadius:10px}
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-    body{background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-synthesis-weight:none;font-synthesis-style:none}
+    body{background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
     img{display:block;max-width:100%;height:auto}
     a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--wrap);margin:0 auto;padding-left:calc(var(--padX) + env(safe-area-inset-left));padding-right:calc(var(--padX) + env(safe-area-inset-right))}
@@ -50,10 +50,9 @@
     .hero h1{font-size:clamp(28px,4vw,44px);margin-bottom:var(--s2);letter-spacing:-.01em}
     .hero p{color:var(--muted);font-size:clamp(15px,2.2vw,18px);margin-bottom:var(--s3)}
     .actions{display:flex;gap:10px;flex-wrap:wrap}
-
     .frame{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);position:relative}
 
-    /* Only the hero image uses cover and fixed aspect */
+    /* Only the hero image fills its frame */
     .hero .frame img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10}
 
     .section{padding:var(--s7) 0;border-bottom:1px solid var(--border)}
@@ -78,26 +77,25 @@
 
     footer{padding:var(--s5) 0;text-align:center;color:#6b7280;font-size:14px}
 
-    /* Desktop: image matches text height. Image never sets container height. */
+    /* Desktop: lock image to text height by removing it from flow */
     @media (min-width:981px){
       .partner-grid{align-items:stretch}
       .frame.partner{
-        display:flex;
-        align-items:center;
-        justify-content:center;
+        position:relative;         /* establish containing block for absolute img */
+        align-self:stretch;        /* match the grid row height */
         background:#000;
-        /* no fixed height; grid row is defined by tallest column, i.e., the text */
+        overflow:hidden;
       }
       .frame.partner img{
-        width:auto;
-        height:auto;
-        max-width:100%;
-        max-height:100%;
-        object-fit:contain;   /* full image visible */
+        position:absolute;         /* does not affect grid sizing */
+        inset:0;                   /* top:0 right:0 bottom:0 left:0 */
+        width:100%;
+        height:100%;
+        object-fit:contain;        /* show full image */
       }
     }
 
-    /* Mobile: wider indent, full image, capped height */
+    /* Mobile: wider indent, normal in-flow image */
     @media (max-width:980px){
       :root{--padX:50px}
       header{padding-top:6px;padding-bottom:4px}
@@ -112,14 +110,13 @@
       .partner-grid{grid-template-columns:1fr}
       .steps-grid{grid-template-columns:1fr}
       .frame.partner{
-        display:flex;
-        align-items:center;
-        justify-content:center;
+        position:relative;
         background:#000;
         max-height:64vh;
         overflow:hidden;
       }
       .frame.partner img{
+        position:static;           /* back in flow on mobile */
         width:100%;
         height:auto;
         object-fit:contain;
@@ -142,7 +139,7 @@
   <div class="wrap bar">
     <div class="brand">
       <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
-    <strong>Chargyn</strong>
+      <strong>Chargyn</strong>
     </div>
     <nav id="nav" aria-label="Primary">
       <a class="btn outline" href="#focus">Focus</a>
@@ -289,8 +286,7 @@
   };
   hamb?.addEventListener('click', () => toggleMenu(!mnav.classList.contains('open')));
   document.addEventListener('click', e => {
-    if (mnav.contains?.(e.target) || hamb.contains?.(e.target)) return;
-    if (mnav.classList.contains('open')) toggleMenu(false);
+    if (mnav.classList.contains('open') && !mnav.contains(e.target) && !hamb.contains(e.target)) toggleMenu(false);
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
 
@@ -301,7 +297,6 @@
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   }
 
-  // Contact form
   const form = document.getElementById('contact-form');
   const msg  = document.getElementById('form-msg');
   const btn  = document.getElementById('submit-btn');
