@@ -50,8 +50,11 @@
     .hero h1{font-size:clamp(28px,4vw,44px);margin-bottom:var(--s2);letter-spacing:-.01em}
     .hero p{color:var(--muted);font-size:clamp(15px,2.2vw,18px);margin-bottom:var(--s3)}
     .actions{display:flex;gap:10px;flex-wrap:wrap}
+
     .frame{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);position:relative}
-    .frame img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10}
+
+    /* Only the hero image uses cover and fixed aspect */
+    .hero .frame img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10}
 
     .section{padding:var(--s7) 0;border-bottom:1px solid var(--border)}
     .h2{font-size:clamp(22px,3vw,32px);margin-bottom:var(--s2)}
@@ -75,24 +78,22 @@
 
     footer{padding:var(--s5) 0;text-align:center;color:#6b7280;font-size:14px}
 
-    /* Desktop: image column height matches text column. Full image visible. */
+    /* Desktop: image matches text height. Image never sets container height. */
     @media (min-width:981px){
       .partner-grid{align-items:stretch}
       .frame.partner{
         display:flex;
-        align-items:stretch;
+        align-items:center;
         justify-content:center;
         background:#000;
-        border:1px solid var(--border);
-        border-radius:14px;
-        box-shadow:var(--shadow);
-        overflow:hidden;
+        /* no fixed height; grid row is defined by tallest column, i.e., the text */
       }
       .frame.partner img{
-        width:100%;
-        height:100%;
-        object-fit:contain;
-        aspect-ratio:auto;
+        width:auto;
+        height:auto;
+        max-width:100%;
+        max-height:100%;
+        object-fit:contain;   /* full image visible */
       }
     }
 
@@ -115,7 +116,6 @@
         align-items:center;
         justify-content:center;
         background:#000;
-        height:auto;
         max-height:64vh;
         overflow:hidden;
       }
@@ -123,7 +123,6 @@
         width:100%;
         height:auto;
         object-fit:contain;
-        aspect-ratio:auto;
       }
     }
 
@@ -143,7 +142,7 @@
   <div class="wrap bar">
     <div class="brand">
       <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="28" fill="none" stroke="#29E36A" stroke-width="4"/><path d="M36 8 20 34h12l-4 22 20-28H34l2-20z" fill="#29E36A"/></svg>
-      <strong>Chargyn</strong>
+    <strong>Chargyn</strong>
     </div>
     <nav id="nav" aria-label="Primary">
       <a class="btn outline" href="#focus">Focus</a>
@@ -199,7 +198,7 @@
 
 <section class="section reveal" id="why">
   <div class="wrap partner-grid">
-    <div id="why-text">
+    <div>
       <h2 class="h2">Why we are different</h2>
       <ul class="list">
         <li>Real estate first: rigorous parcel underwriting and entitlement path.</li>
@@ -209,7 +208,7 @@
       </ul>
       <div style="margin-top:14px"><a class="btn" href="#contact">Talk to development</a></div>
     </div>
-    <div class="frame partner" id="why-image">
+    <div class="frame partner">
       <img src="/night.jpeg" alt="Chargyn site at night" width="1600" height="1000" loading="lazy" decoding="async">
     </div>
   </div>
@@ -290,7 +289,8 @@
   };
   hamb?.addEventListener('click', () => toggleMenu(!mnav.classList.contains('open')));
   document.addEventListener('click', e => {
-    if (mnav.classList.contains('open') && !mnav.contains(e.target) && !hamb.contains(e.target)) toggleMenu(false);
+    if (mnav.contains?.(e.target) || hamb.contains?.(e.target)) return;
+    if (mnav.classList.contains('open')) toggleMenu(false);
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
 
@@ -300,22 +300,6 @@
     }, {threshold: 0.08});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   }
-
-  // Desktop: lock night image frame to text column height
-  function syncWhyHeights(){
-    const text = document.getElementById('why-text');
-    const frame = document.getElementById('why-image');
-    if(!text || !frame) return;
-    if (window.innerWidth >= 981){
-      frame.style.height = text.offsetHeight + 'px';
-    } else {
-      frame.style.height = 'auto';
-    }
-  }
-  window.addEventListener('load', syncWhyHeights);
-  window.addEventListener('resize', syncWhyHeights);
-  window.addEventListener('orientationchange', syncWhyHeights);
-  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(syncWhyHeights); }
 
   // Contact form
   const form = document.getElementById('contact-form');
@@ -330,7 +314,7 @@
     data.append('_captcha','false');
     try{
       const res = await fetch('https://formspree.io/f/xkgplkda',{method:'POST',body:data,headers:{'Accept':'application/json'}});
-      if(res.ok){ msg.textContent='Thanks. Message sent.'; form.reset(); syncWhyHeights(); }
+      if(res.ok){ msg.textContent='Thanks. Message sent.'; form.reset(); }
       else{ msg.textContent='Submission failed. Please try again later.'; }
     }catch{ msg.textContent='Network error. Please try again.'; }
     finally{ btn.disabled=false; }
