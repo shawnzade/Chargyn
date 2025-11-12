@@ -52,7 +52,6 @@
     .actions{display:flex;gap:10px;flex-wrap:wrap}
     .frame{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);position:relative}
 
-    /* Only the hero image fills its frame */
     .hero .frame img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10}
 
     .section{padding:var(--s7) 0;border-bottom:1px solid var(--border)}
@@ -62,7 +61,6 @@
     .tile{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow);min-height:120px}
     .tile h3{font-size:18px;margin-bottom:var(--s1)}
     .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);align-items:start}
-
     .list{margin:var(--s2) 0 var(--s3) 18px}
     .list li{margin:6px 0}
     .cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
@@ -78,7 +76,7 @@
 
     footer{padding:var(--s5) 0;text-align:center;color:#6b7280;font-size:14px}
 
-    /* DESKTOP: switch this row to flex so columns share one height */
+    /* DESKTOP: Flex alignment, transparent background to avoid bars */
     @media (min-width:981px){
       .partner-grid{
         display:flex;
@@ -89,20 +87,19 @@
 
       .frame.partner{
         display:flex;
-        align-items:center;      /* centers image vertically within shared height */
+        align-items:center;
         justify-content:center;
-        background:#000;
+        background:transparent;
         overflow:hidden;
       }
       .frame.partner img{
-        height:100%;             /* key: match container height */
-        width:auto;              /* keep aspect ratio */
-        max-width:100%;          /* avoid over-wide overflow */
-        object-fit:contain;      /* full image visible */
+        height:100%;
+        width:auto;
+        object-fit:contain;
       }
     }
 
-    /* MOBILE: keep grid and cap height */
+    /* MOBILE: extra side padding and full image */
     @media (max-width:980px){
       :root{--padX:50px}
       header{padding-top:6px;padding-bottom:4px}
@@ -120,7 +117,7 @@
         display:flex;
         align-items:center;
         justify-content:center;
-        background:#000;
+        background:transparent;
         max-height:64vh;
         overflow:hidden;
       }
