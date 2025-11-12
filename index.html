@@ -65,7 +65,7 @@
     .card{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow)}
     .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#444;background:#fafafa;margin-bottom:var(--s1)}
 
-    /* Reveal animation (matches JS adding .in) */
+    /* Reveal animation for JS .in */
     @media (prefers-reduced-motion:no-preference){
       .section,.hero{opacity:0;transform:translateY(10px);transition:opacity .22s ease,transform .22s ease}
       .section.in,.hero.in{opacity:1;transform:none}
@@ -74,7 +74,7 @@
       .section,.hero{opacity:1;transform:none}
     }
 
-    /* Desktop: night image sized by layout, not transform */
+    /* Desktop partner image sizing */
     @media (min-width:981px){
       .frame.partner{
         border-radius:14px;
@@ -85,13 +85,13 @@
         display:flex;
         justify-content:center;
         align-items:center;
-        max-width:19%; /* current target width */
+        max-width:19%; /* current target */
       }
       .frame.partner img{
         width:100%;
         height:auto;
         object-fit:cover;
-        aspect-ratio:10/16;  /* portrait container */
+        aspect-ratio:10/16; /* portrait container */
         object-position:center 40%;
       }
     }
@@ -103,7 +103,7 @@
 
     footer{padding:var(--s5) 0;text-align:center;color:#6b7280;font-size:14px}
 
-    /* Mobile: only increase hero side padding to indent top text */
+    /* Mobile: only indent hero text more */
     @media (max-width:980px){
       header{padding-top:6px;padding-bottom:4px}
       nav#nav{display:none}
@@ -197,7 +197,7 @@
         <li>Real estate first: rigorous parcel underwriting and entitlement path.</li>
         <li>Speed: standardized layouts, templated utility packages, predictable timelines.</li>
         <li>Operations: maintenance handled by Tesla; remote monitoring and simple pricing.</li>
-        <li>Alignment: clean revenue share with landlords; minimal disruption to daytime trade.</li>
+        <li>Alignment: clean revenue share with landlords; minimal disruption to daytime operations.</li>
       </ul>
       <div style="margin-top:14px"><a class="btn" href="#contact">Talk to development</a></div>
     </div>
@@ -211,8 +211,8 @@
   <div class="wrap">
     <h2 class="h2">Operating model</h2>
     <div class="cards" style="margin-top:10px">
-      <div class="card"><span class="tag">Business hours</span><p class="muted">Charging can be disabled if stalls must remain private for your trade.</p></div>
-      <div class="card"><span class="tag">After hours</span><p class="muted">Public charging generates revenue and does not require your staff.</p></div>
+      <div class="card"><span class="tag">Business hours</span><p class="muted">Charging can be disabled if stalls must remain private for your business operations.</p></div>
+      <div class="card"><span class="tag">After hours</span><p class="muted">Public charging operates independently and generates passive revenue.</p></div>
     </div>
   </div>
 </section>
@@ -222,9 +222,9 @@
     <h2 class="h2">Current opportunities</h2>
     <p class="muted">Actively sourcing in LA County and the Valley. Parcels with existing parking and straightforward utility access preferred.</p>
     <div class="grid-3" style="margin-top:14px">
-      <div class="tile"><h3>LA Westside</h3><p class="muted">Targeting 6–12 stalls near arterial corridors and grocery anchors.</p></div>
-      <div class="tile"><h3>San Fernando Valley</h3><p class="muted">8–16 stalls near big box retail; space for switchgear and ADA.</p></div>
-      <div class="tile"><h3>South Bay</h3><p class="muted">High throughput near freeways; trenching feasibility required.</p></div>
+      <div class="tile"><h3>LA Westside</h3><p class="muted">Targeting 8–20 stalls near major corridors and bank or retail properties.</p></div>
+      <div class="tile"><h3>San Fernando Valley</h3><p class="muted">Targeting 8–20 stalls near high-traffic commercial centers with strong visibility and easy access.</p></div>
+      <div class="tile"><h3>South Bay</h3><p class="muted">Focusing on freeway-accessible locations with high usage potential and minimal disruption to nearby businesses.</p></div>
     </div>
   </div>
 </section>
