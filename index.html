@@ -61,7 +61,7 @@
     .cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
     .card{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow)}
 
-    /* Desktop: reduce night image size by 50% keeping same aspect ratio */
+    /* Desktop: make night image 30% smaller (max-width 21%) */
     @media (min-width:981px){
       .frame.partner{
         border-radius:14px;
@@ -72,7 +72,7 @@
         display:flex;
         justify-content:center;
         align-items:center;
-        max-width:30%; /* 50% smaller than before */
+        max-width:21%;
       }
       .frame.partner img{
         width:100%;
