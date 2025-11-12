@@ -63,9 +63,14 @@
     .card{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow)}
     .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#444;background:#fafafa;margin-bottom:var(--s1)}
 
+    .contact form{display:grid;gap:var(--s2);margin-top:var(--s2);max-width:560px}
+    input,select,textarea{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:#0b0b0c;font-size:16px;width:100%}
+    textarea{min-height:120px;resize:vertical}
+    .btn[disabled]{opacity:.6;cursor:not-allowed}
+
     footer{padding:var(--s5) 0;text-align:center;color:#6b7280;font-size:14px}
 
-    /* Desktop: 40% image height and rounded corners */
+    /* Desktop: 33% image height and rounded corners */
     @media (min-width:981px){
       .frame.partner{
         display:flex;
@@ -80,7 +85,7 @@
       .frame.partner img{
         width:auto;
         height:auto;
-        max-height:40%;
+        max-height:33%;
         object-fit:contain;
       }
     }
@@ -206,21 +211,10 @@
   </div>
 </section>
 
-<section class="section" id="criteria">
-  <div class="wrap">
-    <h2 class="h2">Site criteria</h2>
-    <ul class="list">
-      <li>Parcel with existing paved parking, good visibility, and safe circulation.</li>
-      <li>Power availability or clear upgrade path for 250 kW+ per stall.</li>
-      <li>Room for equipment pads, signage, ADA stalls, and lighting.</li>
-      <li>Clean lease or site control path; ability to operate off-hours if needed.</li>
-    </ul>
-  </div>
-</section>
-
 <section class="section contact" id="contact">
   <div class="wrap">
     <h2 class="h2">Contact</h2>
+    <p class="muted">We respond within one business day.</p>
     <form id="contact-form">
       <input name="name" placeholder="Name" required>
       <input name="email" type="email" placeholder="Email" required>
