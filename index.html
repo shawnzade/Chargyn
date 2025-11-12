@@ -59,10 +59,13 @@
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
     .tile{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow);min-height:120px}
     .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);align-items:start}
+    .cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+    .card{border:1px solid var(--border);border-radius:12px;padding:var(--s3);background:#fff;box-shadow:var(--shadow)}
+    .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:#444;background:#fafafa;margin-bottom:var(--s1)}
 
     footer{padding:var(--s5) 0;text-align:center;color:#6b7280;font-size:14px}
 
-    /* Desktop: 33% image height with rounded corners */
+    /* Desktop: 40% image height and rounded corners */
     @media (min-width:981px){
       .frame.partner{
         display:flex;
@@ -77,12 +80,12 @@
       .frame.partner img{
         width:auto;
         height:auto;
-        max-height:33%;
+        max-height:40%;
         object-fit:contain;
       }
     }
 
-    /* Mobile unchanged */
+    /* Mobile */
     @media (max-width:980px){
       :root{--padX:50px}
       header{padding-top:6px;padding-bottom:4px}
@@ -93,6 +96,7 @@
       .hero .wrap,.hero-grid>div:first-child{text-align:center}
       .actions{justify-content:center}
       .grid-3{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
       .partner-grid{grid-template-columns:1fr}
       .frame.partner{
         display:flex;
@@ -114,6 +118,7 @@
   </style>
 </head>
 <body>
+
 <header>
   <div class="wrap bar">
     <div class="brand">
@@ -180,7 +185,40 @@
   </div>
 </section>
 
-<section class="section" id="contact">
+<section class="section" id="how">
+  <div class="wrap">
+    <h2 class="h2">Operating model</h2>
+    <div class="cards">
+      <div class="card"><span class="tag">Business hours</span><p class="muted">Charging can be disabled if stalls must remain private for your trade.</p></div>
+      <div class="card"><span class="tag">After hours</span><p class="muted">Public charging generates revenue and does not require your staff.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pipeline">
+  <div class="wrap">
+    <h2 class="h2">Current opportunities</h2>
+    <div class="grid-3">
+      <div class="tile"><h3>LA Westside</h3><p class="muted">Targeting 6–12 stalls near arterial corridors and grocery anchors.</p></div>
+      <div class="tile"><h3>San Fernando Valley</h3><p class="muted">8–16 stalls near big box retail; space for switchgear and ADA.</p></div>
+      <div class="tile"><h3>South Bay</h3><p class="muted">High throughput near freeways; trenching feasibility required.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="criteria">
+  <div class="wrap">
+    <h2 class="h2">Site criteria</h2>
+    <ul class="list">
+      <li>Parcel with existing paved parking, good visibility, and safe circulation.</li>
+      <li>Power availability or clear upgrade path for 250 kW+ per stall.</li>
+      <li>Room for equipment pads, signage, ADA stalls, and lighting.</li>
+      <li>Clean lease or site control path; ability to operate off-hours if needed.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
   <div class="wrap">
     <h2 class="h2">Contact</h2>
     <form id="contact-form">
@@ -198,5 +236,6 @@
 <script>
 document.getElementById('y').textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
